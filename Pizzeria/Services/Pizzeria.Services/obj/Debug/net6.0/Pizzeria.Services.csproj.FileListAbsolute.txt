@@ -1,0 +1,12 @@
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\bin\Debug\net6.0\Pizzeria.Services.deps.json
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\bin\Debug\net6.0\Pizzeria.Services.dll
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\bin\Debug\net6.0\Pizzeria.Services.pdb
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.csproj.AssemblyReference.cache
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.AssemblyInfoInputs.cache
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.AssemblyInfo.cs
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.csproj.CoreCompileInputs.cache
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.dll
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\refint\Pizzeria.Services.dll
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\Pizzeria.Services.pdb
+C:\Users\Milcho\OneDrive\Desktop\Final Project SoftUni\Pizzeria\Services\Pizzeria.Services\obj\Debug\net6.0\ref\Pizzeria.Services.dll

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "yXDuwaDjBHMCCAnqUBC+9T2ToFwoA8UaCqhrrbuO22H0RiZ9S3w7TY8Rji0JQxsb8Z83EuFFZOcK/h2twgW+7A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Milcho\\OneDrive\\Desktop\\Final Project SoftUni\\Pizzeria\\Data\\Pizzeria.Data.Common\\Pizzeria.Data.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Milcho\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
+    "C:\\Users\\Milcho\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512",
+    "C:\\Users\\Milcho\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

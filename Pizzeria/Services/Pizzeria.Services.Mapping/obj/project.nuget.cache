@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "gd53vvY7NfknBSKq6nKP1lI65eFSAAR9kaI5SJmt6b+2D+xagx2dz7bMoEqeW9auk7pOZKoo8bhxgIm2ccMraQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Milcho\\OneDrive\\Desktop\\Final Project SoftUni\\Pizzeria\\Services\\Pizzeria.Services.Mapping\\Pizzeria.Services.Mapping.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Milcho\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Milcho\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Milcho\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
+    "C:\\Users\\Milcho\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512"
+  ],
+  "logs": []
+}
