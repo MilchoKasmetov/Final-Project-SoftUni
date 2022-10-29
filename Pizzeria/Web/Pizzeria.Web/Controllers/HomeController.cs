@@ -1,14 +1,21 @@
 ﻿namespace Pizzeria.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
 
     using Microsoft.AspNetCore.Mvc;
+    using Pizzeria.Data.Models;
     using Pizzeria.Web.ViewModels;
+    using Pizzeria.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
         public IActionResult Index()
         {
+            // show all if logged        
+
+            
+
             return this.View();
         }
 

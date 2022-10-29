@@ -19,6 +19,7 @@
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+        // bool is meat /isbestSeller/category/price
 
         [Required]
         public string ImageURL { get; set; }
