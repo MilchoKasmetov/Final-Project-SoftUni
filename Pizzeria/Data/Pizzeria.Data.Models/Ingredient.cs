@@ -17,6 +17,11 @@
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        public int IngredientCategoryId { get; set; }
+
+        public IngredientCategory IngredientCategory { get; set; }
+
         public ICollection<Pizza> Pizzas { get; set; }
     }
 }

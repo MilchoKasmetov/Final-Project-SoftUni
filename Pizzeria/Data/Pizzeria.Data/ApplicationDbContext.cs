@@ -35,6 +35,8 @@
 
         public DbSet<SauceDip> SauceDips { get; set; }
 
+        public DbSet<IngredientCategory> IngredientCategories { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

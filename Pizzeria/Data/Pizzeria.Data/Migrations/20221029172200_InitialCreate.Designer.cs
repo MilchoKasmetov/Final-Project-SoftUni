@@ -12,8 +12,8 @@ using Pizzeria.Data;
 namespace Pizzeria.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221029075941_AddPizzaAndRelatedModels")]
-    partial class AddPizzaAndRelatedModels
+    [Migration("20221029172200_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -286,7 +286,9 @@ namespace Pizzeria.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -309,6 +311,9 @@ namespace Pizzeria.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IngredientCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -316,13 +321,49 @@ namespace Pizzeria.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientCategoryId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Ingredients");
+                });
+
+            modelBuilder.Entity("Pizzeria.Data.Models.IngredientCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("IngredientCategories");
                 });
 
             modelBuilder.Entity("Pizzeria.Data.Models.Pizza", b =>
@@ -334,6 +375,7 @@ namespace Pizzeria.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AddedByUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -346,6 +388,7 @@ namespace Pizzeria.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImageURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -355,7 +398,9 @@ namespace Pizzeria.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("SauceDipId")
                         .HasColumnType("int");
@@ -399,7 +444,9 @@ namespace Pizzeria.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -462,7 +509,9 @@ namespace Pizzeria.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -537,11 +586,24 @@ namespace Pizzeria.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pizzeria.Data.Models.Ingredient", b =>
+                {
+                    b.HasOne("Pizzeria.Data.Models.IngredientCategory", "IngredientCategory")
+                        .WithMany()
+                        .HasForeignKey("IngredientCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("IngredientCategory");
+                });
+
             modelBuilder.Entity("Pizzeria.Data.Models.Pizza", b =>
                 {
                     b.HasOne("Pizzeria.Data.Models.ApplicationUser", "AddedByUser")
                         .WithMany()
-                        .HasForeignKey("AddedByUserId");
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Pizzeria.Data.Models.Dough", "Dough")
                         .WithMany()
