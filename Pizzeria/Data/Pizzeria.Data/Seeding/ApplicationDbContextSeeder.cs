@@ -30,6 +30,8 @@
                               new DoughsSeeder(),
                               new SauceDipsSeeder(),
                               new SizesSeeder(),
+                              new IngredientCategoriesSeeder(),
+                              new IngredientsSeeder(),
                           };
 
             foreach (var seeder in seeders)
