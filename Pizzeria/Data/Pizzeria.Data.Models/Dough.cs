@@ -7,7 +7,7 @@
     public class Dough : BaseDeletableModel<int>
     {
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
     }
 }

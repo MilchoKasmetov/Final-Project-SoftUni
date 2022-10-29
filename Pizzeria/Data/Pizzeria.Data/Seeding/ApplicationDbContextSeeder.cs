@@ -27,6 +27,9 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new DoughsSeeder(),
+                              new SauceDipsSeeder(),
+                              new SizesSeeder(),
                           };
 
             foreach (var seeder in seeders)
