@@ -17,10 +17,12 @@ namespace Pizzeria.Data.Seeding
                 return;
             }
 
-            var herbsCategory = await dbContext.IngredientCategories.FirstOrDefaultAsync(x => x.Name == "Herbs");
-            var cheesesCategory = await dbContext.IngredientCategories.FirstOrDefaultAsync(x => x.Name == "Cheeses");
-            var meatsCategory = await dbContext.IngredientCategories.FirstOrDefaultAsync(x => x.Name == "Meats");
-            var vegetablesCategory = await dbContext.IngredientCategories.FirstOrDefaultAsync(x => x.Name == "Vegetables");
+            var allCategory = await dbContext.IngredientCategories.ToListAsync();
+
+            var herbsCategory = allCategory.FirstOrDefault(x => x.Name == "Herbs");
+            var cheesesCategory = allCategory.FirstOrDefault(x => x.Name == "Cheeses");
+            var meatsCategory = allCategory.FirstOrDefault(x => x.Name == "Meats");
+            var vegetablesCategory = allCategory.FirstOrDefault(x => x.Name == "Vegetables");
 
             await dbContext.Ingredients.AddAsync(new Ingredient() { Name = "Oregano", IngredientCategoryId = herbsCategory.Id });
             await dbContext.Ingredients.AddAsync(new Ingredient() { Name = "Parmesan Sprinkles", IngredientCategoryId = herbsCategory.Id });
