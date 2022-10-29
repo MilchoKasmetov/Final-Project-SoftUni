@@ -1,9 +1,8 @@
 ﻿namespace Pizzeria.Web.Areas.Administration.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.Administration.Dashboard;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class DashboardController : AdministrationController
     {

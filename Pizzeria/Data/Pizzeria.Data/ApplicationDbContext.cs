@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Pizzeria.Data.Common.Models;
-    using Pizzeria.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Pizzeria.Data.Common.Models;
+    using Pizzeria.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -25,6 +24,16 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Pizza> Pizzas { get; set; }
+
+        public DbSet<Dough> Doughs { get; set; }
+
+        public DbSet<Ingredient> Ingredients { get; set; }
+
+        public DbSet<Size> Sizes { get; set; }
+
+        public DbSet<SauceDip> SauceDips { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

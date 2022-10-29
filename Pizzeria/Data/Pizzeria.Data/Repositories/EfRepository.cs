@@ -4,9 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Pizzeria.Data.Common.Repositories;
-
     using Microsoft.EntityFrameworkCore;
+    using Pizzeria.Data.Common.Repositories;
 
     public class EfRepository<TEntity> : IRepository<TEntity>
         where TEntity : class

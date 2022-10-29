@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Pizzeria.Common;
-    using Pizzeria.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using Pizzeria.Common;
+    using Pizzeria.Data.Models;
 
     internal class RolesSeeder : ISeeder
     {

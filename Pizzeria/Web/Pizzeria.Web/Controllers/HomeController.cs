@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using Pizzeria.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using Pizzeria.Web.ViewModels;
 
     public class HomeController : BaseController
     {

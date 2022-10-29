@@ -3,12 +3,11 @@
     using System;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.Settings;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController
     {
