@@ -21,7 +21,7 @@
 
         public int SauceDipId { get; set; }
 
-        public ICollection<SauceDip> SauceDips { get; set; }
+        public ICollection<PizzaSauceDipInputModel> SauceDips { get; set; }
 
         public ICollection<PizzaIngredientInputModel> Ingredients { get; set; }
 

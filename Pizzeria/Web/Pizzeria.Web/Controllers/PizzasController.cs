@@ -9,6 +9,7 @@
     public class PizzasController : Controller
     {
         private readonly IDoughsService doughsService;
+        private readonly ISauceDipsService sauceDipsService;
 
 
         //private readonly IPizzaService pizzaService;
@@ -18,9 +19,10 @@
         //    pizzaService = _pizzaService;
         //}
 
-        public PizzasController(IDoughsService doughsService)
+        public PizzasController(IDoughsService doughsService, ISauceDipsService sauceDipsService)
         {
             this.doughsService = doughsService;
+            this.sauceDipsService = sauceDipsService;
         }
 
      
@@ -30,6 +32,7 @@
         {
             var model = new CreatePizzaInputModel();
             model.Doughs = await this.doughsService.GetDoughsAsync();
+            model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
             return this.View(model);
         }
 
