@@ -43,7 +43,7 @@
 
         public Size Size { get; set; }
 
-        [Required]
+        //[Required]
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }

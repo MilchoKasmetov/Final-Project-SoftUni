@@ -32,6 +32,7 @@
                               new SizesSeeder(),
                               new IngredientCategoriesSeeder(),
                               new IngredientsSeeder(),
+                              new PizzasSeeder(),
                           };
 
             foreach (var seeder in seeders)
