@@ -1,6 +1,5 @@
 ﻿namespace Pizzeria.Data.Models
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -14,7 +13,7 @@
         }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100, MinimumLength = 3)]
         public string Name { get; set; }
 
         [Required]

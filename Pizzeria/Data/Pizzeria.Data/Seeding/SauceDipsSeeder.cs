@@ -1,9 +1,7 @@
 ﻿namespace Pizzeria.Data.Seeding
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Pizzeria.Data.Models;
@@ -19,7 +17,7 @@
 
             await dbContext.SauceDips.AddAsync(new SauceDip() { Name = "Tomato Sauce" });
             await dbContext.SauceDips.AddAsync(new SauceDip() { Name = "BBQ Sauce" });
-            await dbContext.SauceDips.AddAsync(new SauceDip() { Name = "Cream Sauce" });     
+            await dbContext.SauceDips.AddAsync(new SauceDip() { Name = "Cream Sauce" });
 
             await dbContext.SaveChangesAsync();
         }

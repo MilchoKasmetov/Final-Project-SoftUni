@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Pizzeria.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pizzeria.Data.Seeding
+﻿namespace Pizzeria.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using Pizzeria.Data.Models;
+
     public class PizzasSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace Pizzeria.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class RemovedRequireAttributeUserPizzaToSeedTheDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
