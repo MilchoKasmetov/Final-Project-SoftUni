@@ -17,7 +17,7 @@
 
         public int DoughId { get; set; }
 
-        public ICollection<Dough> Doughs { get; set; }
+        public ICollection<PizzaDoughInputModel> Doughs { get; set; }
 
         public int SauceDipId { get; set; }
 

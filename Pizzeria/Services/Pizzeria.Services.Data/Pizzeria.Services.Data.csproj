@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Pizzeria.Data.Common\Pizzeria.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Pizzeria.Data.Models\Pizzeria.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\Pizzeria.Web.ViewModels\Pizzeria.Web.ViewModels.csproj" />
     <ProjectReference Include="..\Pizzeria.Services.Mapping\Pizzeria.Services.Mapping.csproj" />
   </ItemGroup>
 

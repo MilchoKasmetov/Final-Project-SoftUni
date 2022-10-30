@@ -4,9 +4,10 @@
     using System.Threading.Tasks;
 
     using Pizzeria.Data.Models;
+    using Pizzeria.Web.ViewModels.Pizzas;
 
     public interface IDoughsService
     {
-        Task<ICollection<Dough>> GetDoughsAsync();
+        Task<ICollection<PizzaDoughInputModel>> GetDoughsAsync();
     }
 }
