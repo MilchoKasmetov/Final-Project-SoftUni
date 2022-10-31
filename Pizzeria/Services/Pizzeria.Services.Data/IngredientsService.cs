@@ -22,7 +22,7 @@
 
         public async Task<ICollection<PizzaIngredientInputModel>> GetIngredientsAsync()
         {
-            return await this.ingredientRepository.AllAsNoTracking().Select(x => new PizzaIngredientInputModel() { Id = x.Id, Name = x.Name, IngredientCategoryName = x.IngredientCategory.Name }).ToListAsync();
+            return await this.ingredientRepository.AllAsNoTracking().Select(x => new PizzaIngredientInputModel() { Id = x.Id, Name = x.Name, IngredientCategoryName = x.IngredientCategory.Name }).OrderBy(x => x.IngredientCategoryName).ThenBy(x => x.Name).ToListAsync();
         }
     }
 }

@@ -64,7 +64,6 @@
                 input.Sizes = await this.sizesService.GetSizesAsync();
                 return this.View();
             }
-            return this.Json(input);
 
             await this.pizzasService.CreatePizzaAsync(input);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
