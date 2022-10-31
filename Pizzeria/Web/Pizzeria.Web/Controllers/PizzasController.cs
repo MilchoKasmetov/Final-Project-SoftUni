@@ -2,6 +2,7 @@
 {
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.Pizzas;
@@ -11,6 +12,7 @@
         private readonly IDoughsService doughsService;
         private readonly ISauceDipsService sauceDipsService;
         private readonly IIngredientsService ingredientsService;
+        private readonly ISizesService sizesService;
 
 
         //private readonly IPizzaService pizzaService;
@@ -20,14 +22,19 @@
         //    pizzaService = _pizzaService;
         //}
 
-        public PizzasController(IDoughsService doughsService, ISauceDipsService sauceDipsService, IIngredientsService ingredientsService)
+        public PizzasController(
+            IDoughsService doughsService,
+            ISauceDipsService sauceDipsService,
+            IIngredientsService ingredientsService,
+            ISizesService sizesService)
         {
             this.doughsService = doughsService;
             this.sauceDipsService = sauceDipsService;
             this.ingredientsService = ingredientsService;
+            this.sizesService = sizesService;
         }
 
-     
+
         private string UserId => this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         public async Task<IActionResult> Create()
@@ -36,6 +43,7 @@
             model.Doughs = await this.doughsService.GetDoughsAsync();
             model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
             model.Ingredients = await this.ingredientsService.GetIngredientsAsync();
+            model.Sizes = await this.sizesService.GetSizesAsync();
             return this.View(model);
         }
 

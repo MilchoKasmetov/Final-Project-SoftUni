@@ -9,7 +9,7 @@
     {
         public IActionResult Index()
         {
-            // show all if logged        
+            // show all if logged
 
 
 

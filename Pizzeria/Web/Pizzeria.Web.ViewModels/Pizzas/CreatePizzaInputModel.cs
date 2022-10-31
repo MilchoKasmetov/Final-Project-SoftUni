@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
     using Pizzeria.Data.Models;
 
     public class CreatePizzaInputModel
@@ -27,9 +26,13 @@
 
         public int SizeId { get; set; }
 
-        public ICollection<Size> Sizes { get; set; }
+        public ICollection<PizzaSizeInputModel> Sizes { get; set; }
 
         //[Required]
         public string AddedByUserId { get; set; }
+
+        [Required]
+        [Range(0.00, 1000.00)]
+        public decimal Price { get; set; }
     }
 }

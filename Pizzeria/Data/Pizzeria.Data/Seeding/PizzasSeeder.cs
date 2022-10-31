@@ -33,6 +33,7 @@
                 SauceDipId = sauceDip.Id,
                 Ingredients = allIngredients,
                 SizeId = size.Id,
+                Price = 10.40M,
             });
 
             await dbContext.SaveChangesAsync();
