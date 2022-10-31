@@ -68,6 +68,7 @@
             services.AddTransient<ISauceDipsService, SauceDipsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<ISizesService, SizesService>();
+            services.AddTransient<IPizzasService, PizzasService>();
         }
 
         private static void Configure(WebApplication app)

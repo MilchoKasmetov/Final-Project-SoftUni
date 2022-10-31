@@ -22,7 +22,7 @@
 
         public ICollection<PizzaSauceDipInputModel> SauceDips { get; set; }
 
-        public ICollection<PizzaIngredientInputModel> Ingredients { get; set; }
+        public PizzaIngredientInputModel[] Ingredients { get; set; }
 
         public int SizeId { get; set; }
 

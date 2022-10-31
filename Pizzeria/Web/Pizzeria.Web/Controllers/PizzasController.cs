@@ -1,5 +1,6 @@
 ﻿namespace Pizzeria.Web.Controllers
 {
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@
         private readonly ISauceDipsService sauceDipsService;
         private readonly IIngredientsService ingredientsService;
         private readonly ISizesService sizesService;
+        private readonly IPizzasService pizzasService;
 
 
         //private readonly IPizzaService pizzaService;
@@ -26,12 +28,14 @@
             IDoughsService doughsService,
             ISauceDipsService sauceDipsService,
             IIngredientsService ingredientsService,
-            ISizesService sizesService)
+            ISizesService sizesService,
+            IPizzasService pizzasService)
         {
             this.doughsService = doughsService;
             this.sauceDipsService = sauceDipsService;
             this.ingredientsService = ingredientsService;
             this.sizesService = sizesService;
+            this.pizzasService = pizzasService;
         }
 
 
@@ -40,21 +44,29 @@
         public async Task<IActionResult> Create()
         {
             var model = new CreatePizzaInputModel();
+            var ingredientsList = await this.ingredientsService.GetIngredientsAsync();
             model.Doughs = await this.doughsService.GetDoughsAsync();
             model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
-            model.Ingredients = await this.ingredientsService.GetIngredientsAsync();
+            model.Ingredients = ingredientsList.ToArray();
             model.Sizes = await this.sizesService.GetSizesAsync();
             return this.View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(CreatePizzaInputModel input)
+        public async Task<IActionResult> Create(CreatePizzaInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
+                var ingredientsList = await this.ingredientsService.GetIngredientsAsync();
+                input.Doughs = await this.doughsService.GetDoughsAsync();
+                input.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
+                input.Ingredients = ingredientsList.ToArray();
+                input.Sizes = await this.sizesService.GetSizesAsync();
                 return this.View();
             }
+            return this.Json(input);
 
+            await this.pizzasService.CreatePizzaAsync(input);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.Redirect("/");
         }
