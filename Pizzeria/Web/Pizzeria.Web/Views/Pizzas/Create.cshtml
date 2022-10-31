@@ -38,8 +38,48 @@
             </div>
 
             <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Create" />
+                <label asp-for="@Model.Ingredients" class="form-label">Ingredients</label>
+
+                <ul id="chktech">
+                        @foreach (var ingredients in Model.Ingredients)
+                        {
+
+                            <li>
+                                <input type="checkbox" asp-for="@ingredients.Selected" />
+                                <label asp-for="@ingredients.Name">@ingredients.Name</label>
+                                <input type="hidden" asp-for="@ingredients.Id" />                                
+                            </li>
+                        }
+                    </ul>
+               
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+                
+
+            </div>
+
+            <div class="mb-3">
+                <input id="btnSubmit" class="btn btn-primary" type="submit" value="Create" />
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $('#btnSubmit').click(function () {
+                if ($('#chktech input:checked').length > 1) {
+                    return true;
+                }
+                else {
+                    alert('Please select atleast two ingredients')
+                    return false;
+                }
+            })
+        });
+
+    </script>
+}
