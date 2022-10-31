@@ -65,9 +65,16 @@
                 return this.View();
             }
 
-            await this.pizzasService.CreatePizzaAsync(input);
+            await this.pizzasService.CreatePizzaAsync(input, this.UserId);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.Redirect("/");
+        }
+
+        public async Task<IActionResult> All()
+        {
+            var model = await this.pizzasService.ShowAllPizzaAsync();
+
+            return this.View(model);
         }
     }
 }

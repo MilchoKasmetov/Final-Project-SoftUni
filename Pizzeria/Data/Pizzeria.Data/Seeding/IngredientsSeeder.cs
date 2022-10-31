@@ -57,13 +57,6 @@
             await dbContext.Ingredients.AddAsync(new Ingredient() { Name = "Caramelized onions", IngredientCategoryId = vegetablesCategory.Id });
             await dbContext.Ingredients.AddAsync(new Ingredient() { Name = "Sun-dried tomatoes in oil", IngredientCategoryId = vegetablesCategory.Id });
 
-
-
-            //await dbContext.IngredientCategories.AddAsync(new IngredientCategory() { Name = "Herbs" });
-            //await dbContext.IngredientCategories.AddAsync(new IngredientCategory() { Name = "Cheeses" });
-            //await dbContext.IngredientCategories.AddAsync(new IngredientCategory() { Name = "Meats" });
-            //await dbContext.IngredientCategories.AddAsync(new IngredientCategory() { Name = "Vegetables" });
-
             await dbContext.SaveChangesAsync();
         }
     }

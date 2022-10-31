@@ -1,15 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Pizzeria.Data.Common.Repositories;
-using Pizzeria.Data.Models;
-using Pizzeria.Web.ViewModels.Pizzas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pizzeria.Services.Data
+﻿namespace Pizzeria.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using Pizzeria.Data.Common.Repositories;
+    using Pizzeria.Data.Models;
+    using Pizzeria.Web.ViewModels.Pizzas;
+
     public class PizzasService : IPizzasService
     {
         private readonly IDeletableEntityRepository<Pizza> pizzaRepository;
@@ -21,7 +22,7 @@ namespace Pizzeria.Services.Data
             this.ingredientRepository = ingredientRepository;
         }
 
-        public async Task CreatePizzaAsync(CreatePizzaInputModel input)
+        public async Task CreatePizzaAsync(CreatePizzaInputModel input, string userId)
         {
             var pizza = new Pizza()
             {
@@ -31,6 +32,7 @@ namespace Pizzeria.Services.Data
                 SauceDipId = input.SauceDipId,
                 SizeId = input.SizeId,
                 Price = input.Price,
+                AddedByUserId = userId,
             };
 
             foreach (var ingredient in input.Ingredients.Where(x => x.Selected == true))
@@ -44,6 +46,20 @@ namespace Pizzeria.Services.Data
 
             await this.pizzaRepository.AddAsync(pizza);
             await this.pizzaRepository.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<PizzaViewModel>> ShowAllPizzaAsync()
+        {
+
+            var allPizza = await this.pizzaRepository.AllAsNoTracking().Include(x => x.Ingredients).ToListAsync();
+
+            return allPizza.Select(x => new PizzaViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ImageURL = x.ImageURL,
+                Ingredients = string.Join(", ", x.Ingredients.Select(x => x.Name)),
+            }).ToList();
         }
     }
 }

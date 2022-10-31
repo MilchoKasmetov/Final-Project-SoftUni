@@ -22,7 +22,7 @@
 
         public async Task<ICollection<PizzaSizeInputModel>> GetSizesAsync()
         {
-                return await this.sizeRepository.AllAsNoTracking().Select(x => new PizzaSizeInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();
+            return await this.sizeRepository.AllAsNoTracking().Select(x => new PizzaSizeInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
     }
 }

@@ -10,6 +10,8 @@
 
     public interface IPizzasService
     {
-        Task CreatePizzaAsync(CreatePizzaInputModel model);
+        Task CreatePizzaAsync(CreatePizzaInputModel model, string userId);
+
+        Task<ICollection<PizzaViewModel>> ShowAllPizzaAsync();
     }
 }

@@ -8,12 +8,13 @@
     public class HomeController : BaseController
     {
         public IActionResult Index()
-        {
-            // show all if logged
-
-
-
-            return this.View();
+        {           
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction("All", "Pizzas");
+            }
+            //to remove all pizza when have auth
+            return this.RedirectToAction("All", "Pizzas");
         }
 
         public IActionResult Privacy()

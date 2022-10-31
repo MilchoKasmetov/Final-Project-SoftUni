@@ -39,7 +39,6 @@
 
         public Size Size { get; set; }
 
-
         [Required]
         [Range(0.00, 1000.00)]
         [Column(TypeName = "decimal(18,2)")]
