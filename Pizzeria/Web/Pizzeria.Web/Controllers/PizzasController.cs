@@ -3,8 +3,9 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Pizzeria.Data.Models;
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.Pizzas;
 
@@ -15,31 +16,23 @@
         private readonly IIngredientsService ingredientsService;
         private readonly ISizesService sizesService;
         private readonly IPizzasService pizzasService;
-
-
-        //private readonly IPizzaService pizzaService;
-
-        //public PizzasController(IPizzaService _pizzaService)
-        //{
-        //    pizzaService = _pizzaService;
-        //}
+        private readonly UserManager<ApplicationUser> userManager;
 
         public PizzasController(
             IDoughsService doughsService,
             ISauceDipsService sauceDipsService,
             IIngredientsService ingredientsService,
             ISizesService sizesService,
-            IPizzasService pizzasService)
+            IPizzasService pizzasService,
+            UserManager<ApplicationUser> userManager)
         {
             this.doughsService = doughsService;
             this.sauceDipsService = sauceDipsService;
             this.ingredientsService = ingredientsService;
             this.sizesService = sizesService;
             this.pizzasService = pizzasService;
+            this.userManager = userManager;
         }
-
-
-        private string UserId => this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         public async Task<IActionResult> Create()
         {
@@ -65,7 +58,9 @@
                 return this.View();
             }
 
-            await this.pizzasService.CreatePizzaAsync(input, this.UserId);
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            await this.pizzasService.CreatePizzaAsync(input, user.Id);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.Redirect("/");
         }
