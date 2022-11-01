@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Data.Models;
@@ -46,6 +47,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreatePizzaInputModel input)
         {
             if (!this.ModelState.IsValid)
@@ -70,6 +72,29 @@
             var model = await this.pizzasService.ShowAllPizzaAsync();
 
             return this.View(model);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await this.pizzasService.GetForEditAsync(id);
+            model.Doughs = await this.doughsService.GetDoughsAsync();
+            model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
+            model.Sizes = await this.sizesService.GetSizesAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditPizzaInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.pizzasService.UpdateAsync(id, input);
+
+            return this.Redirect("/");
         }
     }
 }

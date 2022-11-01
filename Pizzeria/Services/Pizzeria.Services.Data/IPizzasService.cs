@@ -13,5 +13,9 @@
         Task CreatePizzaAsync(CreatePizzaInputModel model, string userId);
 
         Task<ICollection<PizzaViewModel>> ShowAllPizzaAsync();
+
+        Task<EditPizzaInputModel> GetForEditAsync(int id);
+
+        Task UpdateAsync(int id, EditPizzaInputModel input);
     }
 }

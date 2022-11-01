@@ -5,7 +5,8 @@
 
     using Pizzeria.Data.Models;
 
-    public class CreatePizzaInputModel : BasePizzaInputModel
+    public class EditPizzaInputModel : BasePizzaInputModel
     {
+        public int Id { get; set; }
     }
 }
