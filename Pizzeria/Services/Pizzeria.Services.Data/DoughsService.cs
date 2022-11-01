@@ -41,5 +41,25 @@
         {
             return await this.doughRepository.AllAsNoTracking().Select(x => new PizzaDoughInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
+
+        public async Task<EditDoughInputModel> GetForEditAsync(int id)
+        {
+            var pizza = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            var input = new EditDoughInputModel()
+            {
+                Name = pizza.Name,
+            };
+
+            return input;
+        }
+
+        public async Task UpdateAsync(int id, EditDoughInputModel input)
+        {
+            var dough = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            dough.Name = input.Name;
+
+            await this.doughRepository.SaveChangesAsync();
+
+        }
     }
 }

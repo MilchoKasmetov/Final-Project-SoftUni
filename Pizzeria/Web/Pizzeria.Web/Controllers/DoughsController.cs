@@ -36,5 +36,26 @@ namespace Pizzeria.Web.Controllers
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.Redirect("/");
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await this.doughsService.GetForEditAsync(id);
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, EditDoughInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.doughsService.UpdateAsync(id, input);
+            // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
+            return this.Redirect("/");
+        }
     }
 }

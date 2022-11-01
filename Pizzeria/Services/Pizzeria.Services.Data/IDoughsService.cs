@@ -13,5 +13,8 @@
 
         Task CreateDoughAsync(CreateDoughInputModel model);
 
+        Task<EditDoughInputModel> GetForEditAsync(int id);
+
+        Task UpdateAsync(int id, EditDoughInputModel input);
     }
 }
