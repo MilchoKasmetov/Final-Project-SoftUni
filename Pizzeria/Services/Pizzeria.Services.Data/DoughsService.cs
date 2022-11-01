@@ -9,6 +9,7 @@
     using Microsoft.EntityFrameworkCore;
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;
+    using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.Pizzas;
 
     public class DoughsService : IDoughsService
@@ -18,6 +19,22 @@
         public DoughsService(IDeletableEntityRepository<Dough> doughRepository)
         {
             this.doughRepository = doughRepository;
+        }
+
+        public async Task CreateDoughAsync(CreateDoughInputModel model)
+        {
+            var dough = new Dough()
+            {
+                Name = model.Name,
+            };
+
+            var allDought = await this.doughRepository.All().ToListAsync();
+
+            if (!allDought.Any(x => x.Name == model.Name))
+            {
+                await this.doughRepository.AddAsync(dough);
+                await this.doughRepository.SaveChangesAsync();
+            }
         }
 
         public async Task<ICollection<PizzaDoughInputModel>> GetDoughsAsync()
