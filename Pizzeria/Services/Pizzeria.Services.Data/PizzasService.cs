@@ -53,6 +53,13 @@
             await this.pizzaRepository.SaveChangesAsync();
         }
 
+        public async Task Delete(int id)
+        {
+            var pizza = await this.pizzaRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            this.pizzaRepository.Delete(pizza);
+            await this.pizzaRepository.SaveChangesAsync();
+        }
+
         public async Task<EditPizzaInputModel> GetForEditAsync(int id)
         {
             var pizza = await this.pizzaRepository.All().Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
@@ -67,6 +74,7 @@
             };
 
             //var t = await this.pizzaRepository.All().Select(x => x.Ingredients).ToListAsync();
+
 
             var allIngredientsList = await this.ingredientsService.GetIngredientsAsync();
             foreach (var ingredient in allIngredientsList)
@@ -83,6 +91,26 @@
             input.Ingredients = allIngredientsList.ToArray();
 
             return input;
+        }
+
+        public async Task Restore(int id)
+        {
+            var pizza = await this.pizzaRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);          
+            this.pizzaRepository.Undelete(pizza);
+            await this.pizzaRepository.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<PizzaViewModel>> ShowAllDeletedPizzaAsync()
+        {
+            var allPizza = await this.pizzaRepository.AllWithDeleted().Include(x => x.Ingredients).Where(x => x.IsDeleted == true).ToListAsync();
+
+            return allPizza.Select(x => new PizzaViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ImageURL = x.ImageURL,
+                Ingredients = string.Join(", ", x.Ingredients.Select(x => x.Name)),
+            }).ToList();
         }
 
         public async Task<ICollection<PizzaViewModel>> ShowAllPizzaAsync()

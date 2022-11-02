@@ -14,8 +14,14 @@
 
         Task<ICollection<PizzaViewModel>> ShowAllPizzaAsync();
 
+        Task<ICollection<PizzaViewModel>> ShowAllDeletedPizzaAsync();
+
         Task<EditPizzaInputModel> GetForEditAsync(int id);
 
         Task UpdateAsync(int id, EditPizzaInputModel input);
+
+        Task Delete(int id);
+
+        Task Restore(int id);
     }
 }

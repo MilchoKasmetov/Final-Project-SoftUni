@@ -96,5 +96,28 @@
 
             return this.Redirect("/");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.pizzasService.Delete(id);
+
+            return this.Redirect("/");
+        }
+
+        public async Task<IActionResult> Restore()
+        {
+            var model = await this.pizzasService.ShowAllDeletedPizzaAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Restore(int id)
+        {
+            await this.pizzasService.Restore(id);
+
+            return this.Redirect("/");
+        }
     }
 }
