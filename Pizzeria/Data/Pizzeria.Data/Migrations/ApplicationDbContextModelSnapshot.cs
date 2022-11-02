@@ -241,6 +241,9 @@ namespace Pizzeria.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -259,6 +262,9 @@ namespace Pizzeria.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("ShoppingCartId")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -508,14 +514,9 @@ namespace Pizzeria.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -658,6 +659,17 @@ namespace Pizzeria.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pizzeria.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Pizzeria.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithOne("User")
+                        .HasForeignKey("Pizzeria.Data.Models.ApplicationUser", "ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ShoppingCart");
+                });
+
             modelBuilder.Entity("Pizzeria.Data.Models.Ingredient", b =>
                 {
                     b.HasOne("Pizzeria.Data.Models.IngredientCategory", "IngredientCategory")
@@ -702,15 +714,6 @@ namespace Pizzeria.Data.Migrations
                     b.Navigation("Size");
                 });
 
-            modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCart", b =>
-                {
-                    b.HasOne("Pizzeria.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCartActivity", b =>
                 {
                     b.HasOne("Pizzeria.Data.Models.Pizza", "Pizza")
@@ -747,6 +750,8 @@ namespace Pizzeria.Data.Migrations
             modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCart", b =>
                 {
                     b.Navigation("ShoppingCartActivities");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

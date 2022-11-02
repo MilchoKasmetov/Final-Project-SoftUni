@@ -40,4 +40,8 @@
     <ProjectReference Include="..\Pizzeria.Web.Infrastructure\Pizzeria.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\Pizzeria.Web.ViewModels\Pizzeria.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\ShoppingCarts\" />
+  </ItemGroup>
 </Project>
