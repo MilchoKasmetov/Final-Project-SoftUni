@@ -75,6 +75,7 @@
                 Size = x.ShoppingCartActivities.Select(p => p.Pizza.Size.Name).FirstOrDefault().ToString(),
                 Price = x.ShoppingCartActivities.Select(p => p.Pizza.Price).FirstOrDefault(),
                 Quantity = x.ShoppingCartActivities.Select(p => p.Quantity).FirstOrDefault(),
+                PizzaId = x.ShoppingCartActivities.Select(p => p.Id).FirstOrDefault(),
 
             }).ToList();
             return model;

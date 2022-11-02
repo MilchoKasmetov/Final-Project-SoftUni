@@ -30,5 +30,7 @@
         public int Quantity { get; set; }
 
         public decimal TotalPrice => this.Quantity * this.Price;
+
+        public int PizzaId { get; set; }
     }
 }
