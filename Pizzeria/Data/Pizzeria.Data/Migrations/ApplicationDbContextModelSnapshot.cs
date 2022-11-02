@@ -488,6 +488,78 @@ namespace Pizzeria.Data.Migrations
                     b.ToTable("Settings");
                 });
 
+            modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCartActivity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PizzaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("PizzaId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("ShoppingCartActivities");
+                });
+
             modelBuilder.Entity("Pizzeria.Data.Models.Size", b =>
                 {
                     b.Property<int>("Id")
@@ -630,6 +702,34 @@ namespace Pizzeria.Data.Migrations
                     b.Navigation("Size");
                 });
 
+            modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("Pizzeria.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCartActivity", b =>
+                {
+                    b.HasOne("Pizzeria.Data.Models.Pizza", "Pizza")
+                        .WithMany("ShoppingCartActivities")
+                        .HasForeignKey("PizzaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Pizzeria.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany("ShoppingCartActivities")
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Pizza");
+
+                    b.Navigation("ShoppingCart");
+                });
+
             modelBuilder.Entity("Pizzeria.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Claims");
@@ -637,6 +737,16 @@ namespace Pizzeria.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("Pizzeria.Data.Models.Pizza", b =>
+                {
+                    b.Navigation("ShoppingCartActivities");
+                });
+
+            modelBuilder.Entity("Pizzeria.Data.Models.ShoppingCart", b =>
+                {
+                    b.Navigation("ShoppingCartActivities");
                 });
 #pragma warning restore 612, 618
         }

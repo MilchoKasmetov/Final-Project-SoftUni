@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using Pizzeria.Data.Common.Models;
 
     public class Pizza : BaseDeletableModel<int>
@@ -48,5 +49,7 @@
         public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }
+
+        public ICollection<ShoppingCartActivity> ShoppingCartActivities { get; set; }
     }
 }

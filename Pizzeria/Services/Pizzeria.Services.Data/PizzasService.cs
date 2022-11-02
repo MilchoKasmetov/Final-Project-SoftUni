@@ -72,10 +72,6 @@
                 SizeId = pizza.SizeId,
                 Price = pizza.Price,
             };
-
-            //var t = await this.pizzaRepository.All().Select(x => x.Ingredients).ToListAsync();
-
-
             var allIngredientsList = await this.ingredientsService.GetIngredientsAsync();
             foreach (var ingredient in allIngredientsList)
             {
@@ -95,7 +91,7 @@
 
         public async Task Restore(int id)
         {
-            var pizza = await this.pizzaRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);          
+            var pizza = await this.pizzaRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
             this.pizzaRepository.Undelete(pizza);
             await this.pizzaRepository.SaveChangesAsync();
         }

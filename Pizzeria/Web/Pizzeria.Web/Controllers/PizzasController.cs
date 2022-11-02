@@ -52,11 +52,6 @@
         {
             if (!this.ModelState.IsValid)
             {
-                var ingredientsList = await this.ingredientsService.GetIngredientsAsync();
-                input.Doughs = await this.doughsService.GetDoughsAsync();
-                input.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
-                input.Ingredients = ingredientsList.ToArray();
-                input.Sizes = await this.sizesService.GetSizesAsync();
                 return this.View();
             }
 

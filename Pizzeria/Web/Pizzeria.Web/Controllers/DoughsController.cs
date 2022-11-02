@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Pizzeria.Services.Data;
-using Pizzeria.Web.ViewModels.Dough;
-using Pizzeria.Web.ViewModels.Pizzas;
-using System.Threading.Tasks;
-
-namespace Pizzeria.Web.Controllers
+﻿namespace Pizzeria.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Pizzeria.Services.Data;
+    using Pizzeria.Web.ViewModels.Dough;
+    using Pizzeria.Web.ViewModels.Pizzas;
+
     public class DoughsController : Controller
     {
         private readonly IDoughsService doughsService;

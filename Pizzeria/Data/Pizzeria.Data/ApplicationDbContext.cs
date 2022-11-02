@@ -37,6 +37,10 @@
 
         public DbSet<IngredientCategory> IngredientCategories { get; set; }
 
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        public DbSet<ShoppingCartActivity> ShoppingCartActivities { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
