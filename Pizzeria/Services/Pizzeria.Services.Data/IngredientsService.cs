@@ -71,5 +71,30 @@
 
             await this.ingredientRepository.SaveChangesAsync();
         }
+
+        public async Task<ICollection<IngredientViewModel>> ShowAllDeletedAsync()
+        {
+            var allDough = await this.ingredientRepository.AllWithDeleted().Where(x => x.IsDeleted == true).ToListAsync();
+
+            return allDough.Select(x => new IngredientViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
+        }
+
+        public async Task Delete(int id)
+        {
+            var ingredient = await this.ingredientRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            this.ingredientRepository.Delete(ingredient);
+            await this.ingredientRepository.SaveChangesAsync();
+        }
+
+        public async Task Restore(int id)
+        {
+            var ingredient = await this.ingredientRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            this.ingredientRepository.Undelete(ingredient);
+            await this.ingredientRepository.SaveChangesAsync();
+        }
     }
 }

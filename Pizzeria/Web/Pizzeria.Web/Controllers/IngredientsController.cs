@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Pizzeria.Services.Data;
-using Pizzeria.Web.ViewModels.Dough;
-using Pizzeria.Web.ViewModels.Ingredients;
-using System.Threading.Tasks;
-
-namespace Pizzeria.Web.Controllers
+﻿namespace Pizzeria.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Pizzeria.Services.Data;
+    using Pizzeria.Web.ViewModels.Dough;
+    using Pizzeria.Web.ViewModels.Ingredients;
+
     public class IngredientsController : Controller
     {
         private readonly IIngredientsService ingredientsService;
@@ -70,6 +71,30 @@ namespace Pizzeria.Web.Controllers
             await this.ingredientsService.UpdateAsync(id, input);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "Ingredients");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.ingredientsService.Delete(id);
+
+            return this.RedirectToAction("All", "Ingredients");
+        }
+
+        public async Task<IActionResult> Restore()
+        {
+            var model = await this.ingredientsService.ShowAllDeletedAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Restore(int id)
+        {
+            await this.ingredientsService.Restore(id);
+
+            return this.RedirectToAction("Restore", "Ingredients");
         }
     }
 }
