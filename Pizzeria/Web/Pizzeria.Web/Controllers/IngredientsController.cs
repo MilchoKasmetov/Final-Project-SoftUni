@@ -48,5 +48,28 @@ namespace Pizzeria.Web.Controllers
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "Ingredients");
         }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await this.ingredientsService.GetForUpdateAsync(id);
+            model.IngredientCategories = await this.ingredientCategoriesService.GetIngredientCategoriesAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, EditIngredientInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.ingredientsService.UpdateAsync(id, input);
+            // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
+            return this.RedirectToAction("All", "Ingredients");
+        }
     }
 }

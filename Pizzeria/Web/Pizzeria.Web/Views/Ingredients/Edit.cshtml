@@ -1,5 +1,6 @@
-﻿@using Pizzeria.Web.ViewModels.Dough
-@model EditDoughInputModel
+﻿@using Pizzeria.Web.ViewModels.Ingredients
+
+@model EditIngredientInputModel
 
 <h1>Create a pizza</h1>
 
@@ -11,6 +12,17 @@
                 <label asp-for="@Model.Name" class="form-label">Name</label>
                 <input asp-for="@Model.Name" class="form-control" aria-required="true" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="@Model.IngredientCategoryId" class="form-label">Ingredient Categories</label>
+                <select asp-for="@Model.IngredientCategoryId" class="form-control">
+                    @foreach (var ingredient in Model.IngredientCategories)
+                    {
+                        <option value="@ingredient.Id">@ingredient.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="IngredientCategoryId" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <input id="btnSubmit" class="btn btn-primary" type="submit" value="Update" />

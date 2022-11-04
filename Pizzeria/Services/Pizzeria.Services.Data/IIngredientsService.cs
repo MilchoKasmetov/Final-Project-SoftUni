@@ -17,5 +17,9 @@
         Task<ICollection<IngredientViewModel>> GetAllIngredientsAsync();
 
         Task CreateIngredientsAsync(CreateIngredientInputModel model);
+
+        Task<EditIngredientInputModel> GetForUpdateAsync(int id);
+
+        Task UpdateAsync(int id, EditIngredientInputModel input);
     }
 }

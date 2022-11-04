@@ -14,7 +14,7 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="@Model.IngredientCategoryId" class="form-label">Dough</label>
+                <label asp-for="@Model.IngredientCategoryId" class="form-label">Category Name</label>
                 <select asp-for="@Model.IngredientCategoryId" class="form-control">
                     @foreach (var dough in Model.IngredientCategories)
                     {

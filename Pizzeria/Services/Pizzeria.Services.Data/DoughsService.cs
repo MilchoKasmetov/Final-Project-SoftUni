@@ -49,10 +49,10 @@
 
         public async Task<EditDoughInputModel> GetForUpdateAsync(int id)
         {
-            var pizza = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            var dough = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
             var input = new EditDoughInputModel()
             {
-                Name = pizza.Name,
+                Name = dough.Name,
             };
 
             return input;

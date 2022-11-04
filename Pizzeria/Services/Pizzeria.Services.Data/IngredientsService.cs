@@ -46,9 +46,30 @@
 
         }
 
+        public async Task<EditIngredientInputModel> GetForUpdateAsync(int id)
+        {
+            var ingredient = await this.ingredientRepository.AllWithDeleted().Include(x => x.IngredientCategory).FirstOrDefaultAsync(x => x.Id == id);
+            var input = new EditIngredientInputModel()
+            {
+                Name = ingredient.Name,
+                IngredientCategoryId = ingredient.IngredientCategory.Id,
+                IngredientCategory = new IngredientCategoryViewModel() { Id = ingredient.IngredientCategoryId, Name = ingredient.IngredientCategory.Name},
+            };
+
+            return input;
+        }
+
         public async Task<ICollection<PizzaIngredientInputModel>> GetIngredientsAsync()
         {
             return await this.ingredientRepository.AllAsNoTracking().Select(x => new PizzaIngredientInputModel() { Id = x.Id, Name = x.Name, IngredientCategoryName = x.IngredientCategory.Name }).OrderBy(x => x.IngredientCategoryName).ThenBy(x => x.Name).ToListAsync();
+        }
+
+        public async Task UpdateAsync(int id, EditIngredientInputModel input)
+        {
+            var ingredient = await this.ingredientRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            ingredient.Name = input.Name;
+
+            await this.ingredientRepository.SaveChangesAsync();
         }
     }
 }
