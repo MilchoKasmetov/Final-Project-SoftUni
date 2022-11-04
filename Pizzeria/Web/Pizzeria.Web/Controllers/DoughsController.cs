@@ -35,7 +35,7 @@
 
             await this.doughsService.CreateDoughAsync(input);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
-            return this.Redirect("/");
+            return this.RedirectToAction("All", "Doughs");
         }
 
         public async Task<IActionResult> Edit(int id)

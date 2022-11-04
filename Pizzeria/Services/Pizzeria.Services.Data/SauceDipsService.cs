@@ -21,6 +21,22 @@
             this.sauceDipRepository = sauceDipRepository;
         }
 
+        public async Task CreateDoughAsync(CreateSauceDipInputModel model)
+        {
+            var sauceDip = new SauceDip()
+            {
+                Name = model.Name,
+            };
+
+            var allSauceDip = await this.sauceDipRepository.All().ToListAsync();
+
+            if (!allSauceDip.Any(x => x.Name == model.Name))
+            {
+                await this.sauceDipRepository.AddAsync(sauceDip);
+                await this.sauceDipRepository.SaveChangesAsync();
+            }
+        }
+
         public async Task<ICollection<SauceDipViewModel>> GetAllSauceDipsAsync()
         {
             return await this.sauceDipRepository.All().Select(x => new SauceDipViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();

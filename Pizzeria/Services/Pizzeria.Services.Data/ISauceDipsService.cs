@@ -14,5 +14,7 @@
         Task<ICollection<PizzaSauceDipInputModel>> GetSauceDipsAsync();
 
         Task<ICollection<SauceDipViewModel>> GetAllSauceDipsAsync();
+
+        Task CreateDoughAsync(CreateSauceDipInputModel model);
     }
 }
