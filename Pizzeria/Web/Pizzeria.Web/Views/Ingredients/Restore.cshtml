@@ -1,0 +1,40 @@
+﻿@using Pizzeria.Web.ViewModels.Dough
+@model ICollection<DoughViewModel>
+
+@{
+    ViewBag.Title = "All Deleted Dough";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Dough Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dough in Model)
+        {
+            <tr>
+
+                <td>@dough.Name</td>
+                <td>
+                    <form class="input-group-sm" asp-route-id="@dough.Id" asp-controller="Doughs" asp-action="Edit" method="get">
+                        <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />
+                    </form>
+
+                    <form class="input-group-sm" asp-route-id="@dough.Id" asp-controller="Doughs" asp-action="Restore" method="post" onclick="return confirm('Are you sure you want to restore this?')">
+                        <input type="submit" value="Restore" class="fs-6 btn btn-success mb-3 p-2" />
+                    </form>
+                </td>
+
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

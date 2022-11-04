@@ -70,6 +70,8 @@
             services.AddTransient<ISizesService, SizesService>();
             services.AddTransient<IPizzasService, PizzasService>();
             services.AddTransient<IShoppingCartsService, ShoppingCartsService>();
+            services.AddTransient<IIngredientsService, IngredientsService>();
+            services.AddTransient<IIngredientCategoriesService, IngredientCategoriesService>();
         }
 
         private static void Configure(WebApplication app)
