@@ -62,7 +62,7 @@
 
         public async Task<EditPizzaInputModel> GetForUpdateAsync(int id)
         {
-            var pizza = await this.pizzaRepository.All().Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
+            var pizza = await this.pizzaRepository.AllWithDeleted().Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
             var input = new EditPizzaInputModel()
             {
                 Name = pizza.Name,
@@ -96,7 +96,7 @@
             await this.pizzaRepository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<PizzaViewModel>> ShowAllDeletedPizzaAsync()
+        public async Task<ICollection<PizzaViewModel>> ShowAllDeletedAsync()
         {
             var allPizza = await this.pizzaRepository.AllWithDeleted().Include(x => x.Ingredients).Where(x => x.IsDeleted == true).ToListAsync();
 
@@ -124,7 +124,7 @@
 
         public async Task UpdateAsync(int id, EditPizzaInputModel input)
         {
-            var pizza = await this.pizzaRepository.All().Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
+            var pizza = await this.pizzaRepository.AllWithDeleted().Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
             pizza.Name = input.Name;
             pizza.ImageURL = input.ImageURL;
             pizza.DoughId = input.DoughId;

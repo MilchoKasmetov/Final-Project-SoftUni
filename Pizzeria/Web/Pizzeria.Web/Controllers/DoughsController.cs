@@ -75,7 +75,7 @@
 
         public async Task<IActionResult> Restore()
         {
-            var model = await this.doughsService.ShowAllDeletedDoughsAsync();
+            var model = await this.doughsService.ShowAllDeletedAsync();
 
             return this.View(model);
         }

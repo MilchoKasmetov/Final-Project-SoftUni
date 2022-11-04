@@ -103,7 +103,7 @@
 
         public async Task<IActionResult> Restore()
         {
-            var model = await this.pizzasService.ShowAllDeletedPizzaAsync();
+            var model = await this.pizzasService.ShowAllDeletedAsync();
 
             return this.View(model);
         }

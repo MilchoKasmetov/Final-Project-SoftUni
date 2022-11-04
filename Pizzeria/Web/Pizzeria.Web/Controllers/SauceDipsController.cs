@@ -65,5 +65,28 @@
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "SauceDips");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.sauceDipsService.Delete(id);
+
+            return this.RedirectToAction("All", "SauceDips");
+        }
+
+        public async Task<IActionResult> Restore()
+        {
+            var model = await this.sauceDipsService.ShowAllDeletedAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Restore(int id)
+        {
+            await this.sauceDipsService.Restore(id);
+
+            return this.RedirectToAction("Restore", "SauceDips");
+        }
     }
 }

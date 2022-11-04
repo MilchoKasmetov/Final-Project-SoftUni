@@ -14,7 +14,7 @@
 
         Task<ICollection<DoughViewModel>> GetAllDoughsAsync();
 
-        Task<ICollection<DoughViewModel>> ShowAllDeletedDoughsAsync();
+        Task<ICollection<DoughViewModel>> ShowAllDeletedAsync();
 
         Task CreateDoughAsync(CreateDoughInputModel model);
 

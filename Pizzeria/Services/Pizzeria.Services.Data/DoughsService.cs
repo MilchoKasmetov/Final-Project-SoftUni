@@ -37,13 +37,6 @@
             }
         }
 
-        public async Task Delete(int id)
-        {
-            var dough = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
-            this.doughRepository.Delete(dough);
-            await this.doughRepository.SaveChangesAsync();
-        }
-
         public async Task<ICollection<DoughViewModel>> GetAllDoughsAsync()
         {
             return await this.doughRepository.All().Select(x => new DoughViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
@@ -65,14 +58,7 @@
             return input;
         }
 
-        public async Task Restore(int id)
-        {
-            var dough = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
-            this.doughRepository.Undelete(dough);
-            await this.doughRepository.SaveChangesAsync();
-        }
-
-        public async Task<ICollection<DoughViewModel>> ShowAllDeletedDoughsAsync()
+        public async Task<ICollection<DoughViewModel>> ShowAllDeletedAsync()
         {
             var allDough = await this.doughRepository.AllWithDeleted().Where(x => x.IsDeleted == true).ToListAsync();
 
@@ -88,6 +74,20 @@
             var dough = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
             dough.Name = input.Name;
 
+            await this.doughRepository.SaveChangesAsync();
+        }
+
+        public async Task Delete(int id)
+        {
+            var dough = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            this.doughRepository.Delete(dough);
+            await this.doughRepository.SaveChangesAsync();
+        }
+
+        public async Task Restore(int id)
+        {
+            var dough = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            this.doughRepository.Undelete(dough);
             await this.doughRepository.SaveChangesAsync();
         }
     }

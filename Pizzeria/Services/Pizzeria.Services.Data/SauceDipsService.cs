@@ -66,5 +66,30 @@
 
             await this.sauceDipRepository.SaveChangesAsync();
         }
+
+        public async Task Delete(int id)
+        {
+            var sauceDip = await this.sauceDipRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            this.sauceDipRepository.Delete(sauceDip);
+            await this.sauceDipRepository.SaveChangesAsync();
+        }
+
+        public async Task Restore(int id)
+        {
+            var sauceDip = await this.sauceDipRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            this.sauceDipRepository.Undelete(sauceDip);
+            await this.sauceDipRepository.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<SauceDipViewModel>> ShowAllDeletedAsync()
+        {
+            var allSauceDip = await this.sauceDipRepository.AllWithDeleted().Where(x => x.IsDeleted == true).ToListAsync();
+
+            return allSauceDip.Select(x => new SauceDipViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
+        }
     }
 }

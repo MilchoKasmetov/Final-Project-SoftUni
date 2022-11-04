@@ -15,10 +15,16 @@
 
         Task<ICollection<SauceDipViewModel>> GetAllSauceDipsAsync();
 
+        Task<ICollection<SauceDipViewModel>> ShowAllDeletedAsync();
+
         Task CreateDoughAsync(CreateSauceDipInputModel model);
 
         Task<EditSauceDipInputModel> GetForUpdateAsync(int id);
 
         Task UpdateAsync(int id, EditSauceDipInputModel input);
+
+        Task Delete(int id);
+
+        Task Restore(int id);
     }
 }

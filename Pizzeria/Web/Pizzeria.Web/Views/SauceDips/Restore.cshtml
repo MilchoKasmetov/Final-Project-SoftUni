@@ -1,8 +1,9 @@
-﻿@using Pizzeria.Web.ViewModels.Dough
-@model ICollection<DoughViewModel>
+﻿@using Pizzeria.Web.ViewModels.SauceDips
+
+@model ICollection<SauceDipViewModel>
 
 @{
-    ViewBag.Title = "All Restore Dough";
+    ViewBag.Title = "All Restore SauceDip";
 }
 
 
@@ -16,17 +17,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var dough in Model)
+        @foreach (var sauceDip in Model)
         {
             <tr>
 
-                <td>@dough.Name</td>
+                <td>@sauceDip.Name</td>
                 <td>
-                    <form class="input-group-sm" asp-route-id="@dough.Id" asp-controller="Doughs" asp-action="Edit" method="get">
+                    <form class="input-group-sm" asp-route-id="@sauceDip.Id" asp-controller="SauceDips" asp-action="Edit" method="get">
                         <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />
                     </form>
 
-                    <form class="input-group-sm" asp-route-id="@dough.Id" asp-controller="Doughs" asp-action="Restore" method="post" onclick="return confirm('Are you sure you want to restore this?')">
+                    <form class="input-group-sm" asp-route-id="@sauceDip.Id" asp-controller="SauceDips" asp-action="Restore" method="post" onclick="return confirm('Are you sure you want to restore this?')">
                         <input type="submit" value="Restore" class="fs-6 btn btn-success mb-3 p-2" />
                     </form>
                 </td>
