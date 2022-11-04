@@ -37,6 +37,12 @@
             }
         }
 
+        public async Task<ICollection<DoughViewModel>> GetAllDoughsAsync()
+        {
+            return await this.doughRepository.AllAsNoTracking().Select(x => new DoughViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
+
+        }
+
         public async Task<ICollection<PizzaDoughInputModel>> GetDoughsAsync()
         {
             return await this.doughRepository.AllAsNoTracking().Select(x => new PizzaDoughInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();

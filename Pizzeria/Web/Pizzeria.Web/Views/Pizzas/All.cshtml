@@ -24,9 +24,6 @@
             <form class="input-group-sm" asp-route-id="@pizza.Id" asp-controller="Pizzas" asp-action="Edit" method="get">
                 <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />
             </form>
-            <form class="input-group-sm" asp-route-id="@pizza.Id" asp-controller="Pizzas" asp-action="Details" method="get">
-                <input type="submit" value="Details" class="fs-6 btn btn-success mb-3 p-2" />
-            </form>
             <form class="input-group-sm" asp-route-id="@pizza.Id" asp-controller="Pizzas" asp-action="Delete" method="post" onclick="return confirm('Are you sure you want to delete this?')">
                 <input type="submit" value="Delete" class="fs-6 btn btn-success mb-3 p-2" />
             </form>

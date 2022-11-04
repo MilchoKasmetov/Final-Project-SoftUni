@@ -1,5 +1,6 @@
 ﻿namespace Pizzeria.Services.Data
 {
+    using System.Collections;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@
     public interface IDoughsService
     {
         Task<ICollection<PizzaDoughInputModel>> GetDoughsAsync();
+
+        Task<ICollection<DoughViewModel>> GetAllDoughsAsync();
 
         Task CreateDoughAsync(CreateDoughInputModel model);
 
