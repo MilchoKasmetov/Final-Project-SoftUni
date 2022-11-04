@@ -54,7 +54,7 @@
             return await this.doughRepository.AllAsNoTracking().Select(x => new PizzaDoughInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
 
-        public async Task<EditDoughInputModel> GetForEditAsync(int id)
+        public async Task<EditDoughInputModel> GetForUpdateAsync(int id)
         {
             var pizza = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
             var input = new EditDoughInputModel()
@@ -89,7 +89,6 @@
             dough.Name = input.Name;
 
             await this.doughRepository.SaveChangesAsync();
-
         }
     }
 }

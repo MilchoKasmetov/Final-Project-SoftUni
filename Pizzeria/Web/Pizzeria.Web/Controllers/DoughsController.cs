@@ -40,7 +40,7 @@
 
         public async Task<IActionResult> Edit(int id)
         {
-            var model = await this.doughsService.GetForEditAsync(id);
+            var model = await this.doughsService.GetForUpdateAsync(id);
 
             return this.View(model);
         }

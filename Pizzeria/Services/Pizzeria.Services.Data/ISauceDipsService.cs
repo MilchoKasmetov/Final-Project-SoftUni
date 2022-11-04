@@ -16,5 +16,9 @@
         Task<ICollection<SauceDipViewModel>> GetAllSauceDipsAsync();
 
         Task CreateDoughAsync(CreateSauceDipInputModel model);
+
+        Task<EditSauceDipInputModel> GetForUpdateAsync(int id);
+
+        Task UpdateAsync(int id, EditSauceDipInputModel input);
     }
 }

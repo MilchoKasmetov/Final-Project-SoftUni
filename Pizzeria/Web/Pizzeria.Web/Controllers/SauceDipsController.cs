@@ -43,5 +43,27 @@
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "SauceDips");
         }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await this.sauceDipsService.GetForUpdateAsync(id);
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, EditSauceDipInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.sauceDipsService.UpdateAsync(id, input);
+            // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
+            return this.RedirectToAction("All", "SauceDips");
+        }
     }
 }

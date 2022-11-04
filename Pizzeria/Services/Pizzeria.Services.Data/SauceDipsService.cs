@@ -9,6 +9,7 @@
     using Microsoft.EntityFrameworkCore;
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;
+    using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.Pizzas;
     using Pizzeria.Web.ViewModels.SauceDips;
 
@@ -42,9 +43,28 @@
             return await this.sauceDipRepository.All().Select(x => new SauceDipViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
 
+        public async Task<EditSauceDipInputModel> GetForUpdateAsync(int id)
+        {
+            var sauceDip = await this.sauceDipRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            var input = new EditSauceDipInputModel()
+            {
+                Name = sauceDip.Name,
+            };
+
+            return input;
+        }
+
         public async Task<ICollection<PizzaSauceDipInputModel>> GetSauceDipsAsync()
         {
             return await this.sauceDipRepository.AllAsNoTracking().Select(x => new PizzaSauceDipInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();
+        }
+
+        public async Task UpdateAsync(int id, EditSauceDipInputModel input)
+        {
+            var sauceDip = await this.sauceDipRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            sauceDip.Name = input.Name;
+
+            await this.sauceDipRepository.SaveChangesAsync();
         }
     }
 }

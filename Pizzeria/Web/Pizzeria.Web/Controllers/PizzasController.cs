@@ -72,7 +72,7 @@
 
         public async Task<IActionResult> Edit(int id)
         {
-            var model = await this.pizzasService.GetForEditAsync(id);
+            var model = await this.pizzasService.GetForUpdateAsync(id);
             model.Doughs = await this.doughsService.GetDoughsAsync();
             model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
             model.Sizes = await this.sizesService.GetSizesAsync();

@@ -1,5 +1,4 @@
 ﻿@using Pizzeria.Web.ViewModels.SauceDips
-
 @model ICollection<SauceDipViewModel>;
 @{
     ViewBag.Title = "All Sauces";
@@ -22,11 +21,11 @@
 
                 <td>@sauce.Name</td>
                 <td>
-                    <form class="input-group-sm" asp-route-id="@sauce.Id" asp-controller="Sauces" asp-action="Edit" method="get">
+                    <form class="input-group-sm" asp-route-id="@sauce.Id" asp-controller="SauceDips" asp-action="Edit" method="get">
                         <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />
                     </form>
 
-                    <form class="input-group-sm" asp-route-id="@sauce.Id" asp-controller="Sauces" asp-action="Delete" method="post" onclick="return confirm('Are you sure you want to delete this?')">
+                    <form class="input-group-sm" asp-route-id="@sauce.Id" asp-controller="SauceDips" asp-action="Delete" method="post" onclick="return confirm('Are you sure you want to delete this?')">
                         <input type="submit" value="Delete" class="fs-6 btn btn-success mb-3 p-2" />
                     </form>
                 </td>

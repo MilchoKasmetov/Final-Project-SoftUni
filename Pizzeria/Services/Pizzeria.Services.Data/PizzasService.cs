@@ -60,7 +60,7 @@
             await this.pizzaRepository.SaveChangesAsync();
         }
 
-        public async Task<EditPizzaInputModel> GetForEditAsync(int id)
+        public async Task<EditPizzaInputModel> GetForUpdateAsync(int id)
         {
             var pizza = await this.pizzaRepository.All().Include(x => x.Ingredients).FirstOrDefaultAsync(x => x.Id == id);
             var input = new EditPizzaInputModel()
