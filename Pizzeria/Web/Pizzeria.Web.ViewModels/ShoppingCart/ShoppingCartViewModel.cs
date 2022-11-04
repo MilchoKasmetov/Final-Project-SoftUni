@@ -13,6 +13,8 @@
 
     public class ShoppingCartViewModel
     {
+        public int ShoppingCartActivityId { get; set; }
+
         public string Name { get; set; }
 
         public string ImageURL { get; set; }

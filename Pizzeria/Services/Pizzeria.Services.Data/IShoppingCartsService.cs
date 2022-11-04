@@ -13,5 +13,7 @@
         Task Buy(int id, string userId);
 
         Task<ICollection<ShoppingCartViewModel>> GetAll();
+
+        Task Delete(int id, string userId);
     }
 }

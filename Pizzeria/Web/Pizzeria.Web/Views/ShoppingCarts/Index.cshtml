@@ -12,54 +12,65 @@
                 @{
                     decimal total = 0.00M;
                 }
-                @foreach (var shoppingCart in Model)
+                @if (Model.Select(x => x.ShoppingCartActivityId) == null)
                 {
-                    total += shoppingCart.TotalPrice;
+                    <h1>UR SHOPPING BASKET IS EMPTY</h1>
+                }
+                else
+                {
+                    foreach (var shoppingCart in Model)
+                    {
+                        total += shoppingCart.TotalPrice;
 
-                    <div class="card rounded-3 mb-4">
-                        <div class="card-body p-4">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img src="@shoppingCart.ImageURL"
+                        <div class="card rounded-3 mb-4">
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <img src="@shoppingCart.ImageURL"
                                      class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <p class="lead fw-normal mb-2">@shoppingCart.Name</p>
-                                    <p><span class="text-muted">Dough: </span>@shoppingCart.Dough </p>
-                                    <p><span class="text-muted">Sause: </span>@shoppingCart.SauceDip </p>
-                                    <p><span class="text-muted">Ingredients: </span>@shoppingCart.Ingredients </p>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                    <button class="btn btn-outline-danger px-10"
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2">@shoppingCart.Name</p>
+                                        <p><span class="text-muted">Dough: </span>@shoppingCart.Dough </p>
+                                        <p><span class="text-muted">Sause: </span>@shoppingCart.SauceDip </p>
+                                        <p><span class="text-muted">Ingredients: </span>@shoppingCart.Ingredients </p>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                        <button class="btn btn-outline-danger px-10"
                                         onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="fas fa-minus text-xxl-center">-</i>
-                                    </button>
+                                            <i class="fas fa-minus text-xxl-center">-</i>
+                                        </button>
 
-                                    <input id="form1" min="1" name="quantity" value="@shoppingCart.Quantity" type="number"
-                                       class="form-control form-control-sm"/> 
+                                        <input id="form1" min="1" name="quantity" value="@shoppingCart.Quantity" type="number"
+                                       class="form-control form-control-sm" />
 
-                                    <button class="btn btn-outline-success px-10"
+                                        <button class="btn btn-outline-success px-10"
                                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class="fas fa-plus text-xxl-center">+</i>
-                                    </button>
+                                            <i class="fas fa-plus text-xxl-center">+</i>
+                                        </button>
+
+
+                                    </div>
+                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                        <h5 class="mb-0">$@shoppingCart.TotalPrice.ToString("F2")</h5>
+                                        <form class="input-group-sm" asp-route-id="@shoppingCart.ShoppingCartActivityId" asp-controller="ShoppingCarts" asp-action="Delete" method="post" onclick="return confirm('Are you sure you want to delete this?')">
+                                            <input type="submit" value="Delete" class="fs-6 btn btn-success mb-3 p-2" />
+                                        </form>
+
+                                    </div>
 
 
                                 </div>
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <h5 class="mb-0">$@shoppingCart.TotalPrice.ToString("F2")</h5>
-                                    <form class="input-group-sm" asp-route-id="@shoppingCart.PizzaId" asp-controller="" asp-action="" method="post" onclick="return confirm('Are you sure you want to delete this?')">
-                                        <input type="submit" value="Delete" class="fs-6 btn btn-success mb-3 p-2" />
-                                    </form>
-
-                                </div>
-
 
                             </div>
-
                         </div>
-                    </div>
+
+                    }
 
                 }
+
+
+
 
                 <div class="card mb-4">
                     <div class="card-body p-4 d-flex flex-row">

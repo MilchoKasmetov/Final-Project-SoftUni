@@ -1,5 +1,6 @@
 ﻿namespace Pizzeria.Web.Controllers
 {
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Identity;
@@ -10,14 +11,11 @@
 
     public class ShoppingCartsController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
         private readonly IShoppingCartsService shoppingCartsService;
 
         public ShoppingCartsController(
-            UserManager<ApplicationUser> userManager,
             IShoppingCartsService shoppingCartsService)
         {
-            this.userManager = userManager;
             this.shoppingCartsService = shoppingCartsService;
         }
 
@@ -31,10 +29,20 @@
         [HttpPost]
         public async Task<IActionResult> Buy(int id)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
-            await this.shoppingCartsService.Buy(id, user.Id);
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await this.shoppingCartsService.Buy(id, userId);
 
             return this.RedirectToAction("All", "Pizzas");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await this.shoppingCartsService.Delete(id, userId);
+
+            return this.View(nameof(this.Index));
+        }
+
     }
 }

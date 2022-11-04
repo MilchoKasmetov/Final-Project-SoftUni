@@ -56,9 +56,9 @@
                 return this.View();
             }
 
-            var user = await this.userManager.GetUserAsync(this.User);
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            await this.pizzasService.CreatePizzaAsync(input, user.Id);
+            await this.pizzasService.CreatePizzaAsync(input, userId);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.Redirect("/");
         }

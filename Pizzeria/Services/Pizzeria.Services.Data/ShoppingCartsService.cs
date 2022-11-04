@@ -16,18 +16,21 @@
     {
         private readonly IDeletableEntityRepository<ShoppingCart> shoppingCartRepository;
         private readonly IDeletableEntityRepository<Pizza> pizzaRepository;
+        private readonly IDeletableEntityRepository<ShoppingCartActivity> shoppingCartActivity;
 
         public ShoppingCartsService(
-            IDeletableEntityRepository<ShoppingCart> shoppingCartRepository, 
-            IDeletableEntityRepository<Pizza> pizzaRepository)
+            IDeletableEntityRepository<ShoppingCart> shoppingCartRepository,
+            IDeletableEntityRepository<Pizza> pizzaRepository,
+            IDeletableEntityRepository<ShoppingCartActivity> shoppingCartActivity)
         {
             this.shoppingCartRepository = shoppingCartRepository;
             this.pizzaRepository = pizzaRepository;
+            this.shoppingCartActivity = shoppingCartActivity;
         }
 
         public async Task Buy(int id, string userId)
         {
-            var pizza = await this.pizzaRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == id);            
+            var pizza = await this.pizzaRepository.AllAsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
             var userCart = this.shoppingCartRepository.All().Include(x => x.ShoppingCartActivities).FirstOrDefault(x => x.User.Id == userId);
 
             var cardActivity = userCart.ShoppingCartActivities.FirstOrDefault(x => x.Id == id);
@@ -49,6 +52,14 @@
             await this.shoppingCartRepository.SaveChangesAsync();
         }
 
+        public async Task Delete(int id, string userId)
+        {
+            var shoppingCard = await this.shoppingCartActivity.All().FirstOrDefaultAsync(x => x.Id == id && x.ShoppingCart.User.Id == userId);
+
+            this.shoppingCartActivity.HardDelete(shoppingCard);
+            await this.shoppingCartRepository.SaveChangesAsync();
+        }
+
         public async Task<ICollection<ShoppingCartViewModel>> GetAll()
         {
             var all = await this.shoppingCartRepository
@@ -56,7 +67,7 @@
                 .Include(x => x.ShoppingCartActivities)
                 .ThenInclude(x => x.Pizza)
                 .Include(x => x.ShoppingCartActivities)
-                .ThenInclude( x => x.Pizza.Dough)
+                .ThenInclude(x => x.Pizza.Dough)
                 .Include(x => x.ShoppingCartActivities)
                 .ThenInclude(x => x.Pizza.Size)
                 .Include(x => x.ShoppingCartActivities)
@@ -65,8 +76,14 @@
                 .ThenInclude(x => x.Pizza.Ingredients)
                 .ToListAsync();
 
+            if (all.Select(x => x.ShoppingCartActivities.Count).FirstOrDefault() == 0)
+            {
+                throw new NullReferenceException();
+            }
+
             var model = all.Select(x => new ShoppingCartViewModel()
             {
+                ShoppingCartActivityId = x.ShoppingCartActivities.Select(x => x.Id).FirstOrDefault(),
                 Name = x.ShoppingCartActivities.Select(x => x.Pizza.Name).FirstOrDefault().ToString(),
                 ImageURL = x.ShoppingCartActivities.Select(p => p.Pizza.ImageURL).FirstOrDefault().ToString(),
                 Dough = x.ShoppingCartActivities.Select(p => p.Pizza.Dough.Name).FirstOrDefault().ToString(),
@@ -76,7 +93,6 @@
                 Price = x.ShoppingCartActivities.Select(p => p.Pizza.Price).FirstOrDefault(),
                 Quantity = x.ShoppingCartActivities.Select(p => p.Quantity).FirstOrDefault(),
                 PizzaId = x.ShoppingCartActivities.Select(p => p.Id).FirstOrDefault(),
-
             }).ToList();
             return model;
         }
