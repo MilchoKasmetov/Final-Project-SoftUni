@@ -37,6 +37,13 @@
             }
         }
 
+        public async Task Delete(int id)
+        {
+            var dough = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            this.doughRepository.Delete(dough);
+            await this.doughRepository.SaveChangesAsync();
+        }
+
         public async Task<ICollection<DoughViewModel>> GetAllDoughsAsync()
         {
             return await this.doughRepository.AllAsNoTracking().Select(x => new DoughViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
@@ -50,7 +57,7 @@
 
         public async Task<EditDoughInputModel> GetForEditAsync(int id)
         {
-            var pizza = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            var pizza = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
             var input = new EditDoughInputModel()
             {
                 Name = pizza.Name,
@@ -59,9 +66,27 @@
             return input;
         }
 
+        public async Task Restore(int id)
+        {
+            var dough = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            this.doughRepository.Undelete(dough);
+            await this.doughRepository.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<DoughViewModel>> ShowAllDeletedDoughsAsync()
+        {
+            var allDough = await this.doughRepository.AllWithDeleted().Where(x => x.IsDeleted == true).ToListAsync();
+
+            return allDough.Select(x => new DoughViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
+        }
+
         public async Task UpdateAsync(int id, EditDoughInputModel input)
         {
-            var dough = await this.doughRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            var dough = await this.doughRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
             dough.Name = input.Name;
 
             await this.doughRepository.SaveChangesAsync();

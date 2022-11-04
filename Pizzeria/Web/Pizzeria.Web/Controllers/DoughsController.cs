@@ -64,5 +64,29 @@
             var model = await this.doughsService.GetAllDoughsAsync();
             return this.View(model);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.doughsService.Delete(id);
+
+            return this.RedirectToAction("All", "Doughs");
+        }
+
+        public async Task<IActionResult> Restore()
+        {
+            var model = await this.doughsService.ShowAllDeletedDoughsAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Restore(int id)
+        {
+            await this.doughsService.Restore(id);
+
+            return this.RedirectToAction("Restore", "Doughs");
+        }
     }
 }

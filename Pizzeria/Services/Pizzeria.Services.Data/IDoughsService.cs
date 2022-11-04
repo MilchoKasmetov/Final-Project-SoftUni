@@ -14,10 +14,16 @@
 
         Task<ICollection<DoughViewModel>> GetAllDoughsAsync();
 
+        Task<ICollection<DoughViewModel>> ShowAllDeletedDoughsAsync();
+
         Task CreateDoughAsync(CreateDoughInputModel model);
 
         Task<EditDoughInputModel> GetForEditAsync(int id);
 
         Task UpdateAsync(int id, EditDoughInputModel input);
+
+        Task Delete(int id);
+
+        Task Restore(int id);
     }
 }
