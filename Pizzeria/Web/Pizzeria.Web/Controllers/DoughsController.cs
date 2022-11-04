@@ -65,7 +65,6 @@
             return this.View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

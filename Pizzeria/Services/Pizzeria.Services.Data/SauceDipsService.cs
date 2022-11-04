@@ -10,6 +10,7 @@
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;
     using Pizzeria.Web.ViewModels.Pizzas;
+    using Pizzeria.Web.ViewModels.SauceDips;
 
     public class SauceDipsService : ISauceDipsService
     {
@@ -18,6 +19,11 @@
         public SauceDipsService(IDeletableEntityRepository<SauceDip> sauceDipRepository)
         {
             this.sauceDipRepository = sauceDipRepository;
+        }
+
+        public async Task<ICollection<SauceDipViewModel>> GetAllSauceDipsAsync()
+        {
+            return await this.sauceDipRepository.All().Select(x => new SauceDipViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
 
         public async Task<ICollection<PizzaSauceDipInputModel>> GetSauceDipsAsync()
