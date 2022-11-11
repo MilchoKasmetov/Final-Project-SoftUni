@@ -15,16 +15,13 @@
     {
         private readonly IDeletableEntityRepository<Pizza> pizzaRepository;
         private readonly IDeletableEntityRepository<Ingredient> ingredientRepository;
-        private readonly IIngredientsService ingredientsService;
 
         public PizzasService(
             IDeletableEntityRepository<Pizza> pizzaRepository,
-            IDeletableEntityRepository<Ingredient> ingredientRepository,
-            IIngredientsService ingredientsService)
+            IDeletableEntityRepository<Ingredient> ingredientRepository)
         {
             this.pizzaRepository = pizzaRepository;
             this.ingredientRepository = ingredientRepository;
-            this.ingredientsService = ingredientsService;
         }
 
         public async Task CreatePizzaAsync(CreatePizzaInputModel input, string userId)
@@ -72,7 +69,17 @@
                 SizeId = pizza.SizeId,
                 Price = pizza.Price,
             };
-            var allIngredientsList = await this.ingredientsService.GetIngredientsAsync();
+            var allIngredientsList = await this.ingredientRepository
+                                                                    .All()
+                                                                    .Select(x => new PizzaIngredientInputModel()
+                                                                    {
+                                                                        Id = x.Id,
+                                                                        Name = x.Name,
+                                                                        IngredientCategoryName = x.IngredientCategory.Name,
+                                                                    })
+                                                                    .OrderBy(x => x.IngredientCategoryName)
+                                                                    .ThenBy(x => x.Name)
+                                                                    .ToListAsync();
             foreach (var ingredient in allIngredientsList)
             {
                 foreach (var tickIngredient in pizza.Ingredients)

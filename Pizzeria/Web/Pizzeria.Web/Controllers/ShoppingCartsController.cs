@@ -9,7 +9,7 @@
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.ShoppingCart;
 
-    public class ShoppingCartsController : Controller
+    public class ShoppingCartsController : BaseController
     {
         private readonly IShoppingCartsService shoppingCartsService;
 

@@ -6,74 +6,74 @@
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.Dough;
-    using Pizzeria.Web.ViewModels.Pizzas;
+    using Pizzeria.Web.ViewModels.Sizes;
 
-    public class DoughsController : BaseController
+    public class SizesController : BaseController
     {
-        private readonly IDoughsService doughsService;
+        private readonly ISizesService sizesService;
 
-        public DoughsController(IDoughsService doughsService)
+        public SizesController(ISizesService sizesService)
         {
-            this.doughsService = doughsService;
+            this.sizesService = sizesService;
         }
 
         public IActionResult Create()
         {
-            var model = new CreateDoughInputModel();
+            var model = new CreateSizeInputModel();
 
             return this.View(model);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CreateDoughInputModel input)
+        public async Task<IActionResult> Create(CreateSizeInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            await this.doughsService.CreateDoughAsync(input);
-            return this.RedirectToAction("All", "Doughs");
+            await this.sizesService.CreateSizeAsync(input);
+            return this.RedirectToAction("All", "Sizes");
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            var model = await this.doughsService.GetForUpdateAsync(id);
+            var model = await this.sizesService.GetForUpdateAsync(id);
 
             return this.View(model);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, EditDoughInputModel input)
+        public async Task<IActionResult> Edit(int id, EditSizeInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            await this.doughsService.UpdateAsync(id, input);
-            return this.RedirectToAction("All", "Doughs");
+            await this.sizesService.UpdateAsync(id, input);
+            return this.RedirectToAction("All", "Sizes");
         }
 
         public async Task<IActionResult> All()
         {
-            var model = await this.doughsService.GetAllDoughsAsync();
+            var model = await this.sizesService.GetAllSizesAsync();
             return this.View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await this.doughsService.Delete(id);
+            await this.sizesService.Delete(id);
 
-            return this.RedirectToAction("All", "Doughs");
+            return this.RedirectToAction("All", "Sizes");
         }
 
         public async Task<IActionResult> Restore()
         {
-            var model = await this.doughsService.ShowAllDeletedAsync();
+            var model = await this.sizesService.ShowAllDeletedAsync();
 
             return this.View(model);
         }
@@ -81,9 +81,9 @@
         [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {
-            await this.doughsService.Restore(id);
+            await this.sizesService.Restore(id);
 
-            return this.RedirectToAction("Restore", "Doughs");
+            return this.RedirectToAction("Restore", "Sizes");
         }
     }
 }

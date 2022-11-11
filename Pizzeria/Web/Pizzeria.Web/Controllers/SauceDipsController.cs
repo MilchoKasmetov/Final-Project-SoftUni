@@ -7,7 +7,7 @@
     using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.SauceDips;
 
-    public class SauceDipsController : Controller
+    public class SauceDipsController : BaseController
     {
         private readonly ISauceDipsService sauceDipsService;
 

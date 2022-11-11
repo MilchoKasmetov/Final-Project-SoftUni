@@ -8,7 +8,7 @@
     using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.Ingredients;
 
-    public class IngredientsController : Controller
+    public class IngredientsController : BaseController
     {
         private readonly IIngredientsService ingredientsService;
         private readonly IIngredientCategoriesService ingredientCategoriesService;

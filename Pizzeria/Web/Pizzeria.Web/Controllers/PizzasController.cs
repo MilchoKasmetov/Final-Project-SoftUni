@@ -11,7 +11,7 @@
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.Pizzas;
 
-    public class PizzasController : Controller
+    public class PizzasController : BaseController
     {
         private readonly IDoughsService doughsService;
         private readonly ISauceDipsService sauceDipsService;
