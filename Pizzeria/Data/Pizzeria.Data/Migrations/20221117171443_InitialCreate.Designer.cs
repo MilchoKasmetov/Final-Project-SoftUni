@@ -12,7 +12,7 @@ using Pizzeria.Data;
 namespace Pizzeria.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221102114339_InitialCreate")]
+    [Migration("20221117171443_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
