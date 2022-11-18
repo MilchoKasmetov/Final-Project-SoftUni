@@ -1,0 +1,41 @@
+﻿@using Pizzeria.Web.ViewModels.Ingredients
+
+@model ICollection<IngredientViewModel>
+
+@{
+    ViewBag.Title = "All Deleted Ingredient";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Ingredient Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ingredient in Model)
+        {
+            <tr>
+
+                <td>@ingredient.Name</td>
+                <td>
+                    <form class="input-group-sm" asp-route-id="@ingredient.Id" asp-controller="Ingredients" asp-action="Edit" method="get">
+                        <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />
+                    </form>
+
+                    <form class="input-group-sm" asp-route-id="@ingredient.Id" asp-controller="Ingredients" asp-action="Restore" method="post" onclick="return confirm('Are you sure you want to restore this?')">
+                        <input type="submit" value="Restore" class="fs-6 btn btn-success mb-3 p-2" />
+                    </form>
+                </td>
+
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

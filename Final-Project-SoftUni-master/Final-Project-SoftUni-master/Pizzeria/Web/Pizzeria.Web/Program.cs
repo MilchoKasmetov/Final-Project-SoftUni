@@ -1,6 +1,5 @@
 namespace Pizzeria.Web
 {
-    using System;
     using System.Reflection;
 
     using Microsoft.AspNetCore.Builder;
@@ -42,12 +41,6 @@ namespace Pizzeria.Web
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            //cookie security- need to double check up
-            services.AddSession(options =>
-            {
-                options.Cookie.HttpOnly = true;
-                options.IdleTimeout = new TimeSpan(1, 0, 0, 0);
-            });
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                     .AddRoles<ApplicationRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -85,13 +78,6 @@ namespace Pizzeria.Web
             services.AddTransient<IShoppingCartsService, ShoppingCartsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IIngredientCategoriesService, IngredientCategoriesService>();
-
-            // Facebook authentication
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
-            });
         }
 
         private static void Configure(WebApplication app)
