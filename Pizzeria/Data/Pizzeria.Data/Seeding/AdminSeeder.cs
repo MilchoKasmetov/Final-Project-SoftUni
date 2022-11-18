@@ -17,25 +17,18 @@
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            if (!userManager.Users.Any())
+            var user = new ApplicationUser
             {
-                var user = new ApplicationUser
-                {
-                    Email = GlobalConstants.AdministratorEmail,
-                    ShoppingCart = new ShoppingCart(),
-                };
+                UserName = GlobalConstants.AdministratorEmail,
+                Email = GlobalConstants.AdministratorEmail,
+            };
 
-                var result = await userManager.CreateAsync(user, GlobalConstants.AdministratorPassword);
+            var result = await userManager.CreateAsync(user, GlobalConstants.AdministratorPassword);
 
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
-                }
-
-                dbContext.Users.Add(user);
-                await dbContext.SaveChangesAsync();
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
             }
-
         }
     }
 }

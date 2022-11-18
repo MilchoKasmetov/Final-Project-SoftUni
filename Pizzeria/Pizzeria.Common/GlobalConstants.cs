@@ -12,6 +12,10 @@
 
         public const string UserRoleName = "User";
 
+        public const string UserEmail = "Guest333@gmail.com";
+
+        public const string UserPassword = "Guest333@";
+
         public const int MaxNameLenght = 100;
     }
 }
