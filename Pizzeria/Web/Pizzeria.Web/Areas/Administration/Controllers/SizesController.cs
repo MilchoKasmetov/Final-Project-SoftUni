@@ -1,4 +1,6 @@
-﻿namespace Pizzeria.Web.Controllers
+﻿using Pizzeria.Web.Controllers;
+
+namespace Pizzeria.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
 
@@ -8,7 +10,7 @@
     using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.Sizes;
 
-    public class SizesController : BaseController
+    public class SizesController : AdministrationController
     {
         private readonly ISizesService sizesService;
 

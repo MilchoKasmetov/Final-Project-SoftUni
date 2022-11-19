@@ -11,6 +11,5 @@
         public string IngredientCategoryName { get; set; }
 
         public bool Selected { get; set; }
-
     }
 }

@@ -18,69 +18,78 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Show All</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Pizzas" asp-action="All">All Pizza</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Doughs" asp-action="All">All Dough</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="SauceDips" asp-action="All">All Sauce</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Ingredients" asp-action="All">All Ingredients</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="IngredientCategories" asp-action="All">All Ingredient Category</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Sizes" asp-action="All">All Sizes</a></li>
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Show All</button>
-                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Pizzas" asp-action="All">All Pizza</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Doughs" asp-action="All">All Dough</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="SauceDips" asp-action="All">All Sauce</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Ingredients" asp-action="All">All Ingredients</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="IngredientCategories" asp-action="All">All Ingredient Category</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Sizes" asp-action="All">All Sizes</a></li>
+                        </ul>
+                    </div>
 
-                    </ul>
-                </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Create</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Pizzas" asp-action="Create">Create Pizza</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Doughs" asp-action="Create">Create Dough</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="SauceDips" asp-action="Create">Create Sauce</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Ingredients" asp-action="Create">Create Ingredients</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="IngredientCategories" asp-action="Create">Create Ingredient Category</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Sizes" asp-action="Create">Create Size</a></li>
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Pizzas" asp-action="Create">Create Pizza</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Doughs" asp-action="Create">Create Dough</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="SauceDips" asp-action="Create">Create Sauce</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Ingredients" asp-action="Create">Create Ingredients</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="IngredientCategories" asp-action="Create">Create Ingredient Category</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Sizes" asp-action="Create">Create Size</a></li>
+                        </ul>
+                    </div>
 
-                    </ul>
-                </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Restore</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Pizzas" asp-action="Restore">Restore Pizza</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Doughs" asp-action="Restore">Restore Dough</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="SauceDips" asp-action="Restore">Restore Sauce</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Ingredients" asp-action="Restore">Restore Ingredients</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="IngredientCategories" asp-action="Restore">Restore Ingredient Category</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Sizes" asp-action="Restore">Restore Sizes</a></li>
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Restore</button>
-                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Pizzas" asp-action="Restore">Restore Pizza</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Doughs" asp-action="Restore">Restore Dough</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="SauceDips" asp-action="Restore">Restore Sauce</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Ingredients" asp-action="Restore">Restore Ingredients</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="IngredientCategories" asp-action="Restore">Restore Ingredient Category</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Sizes" asp-action="Restore">Restore Sizes</a></li>
+                        </ul>
+                    </div>
 
-                    </ul>
-                </div>
+                }
 
+                @if (this.User.IsInRole(GlobalConstants.UserRoleName))
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCarts" asp-action="Index">Shopping Cart</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCarts" asp-action="Index">Shopping Cart</a>
-                        </li>
+                        </ul>
+                        
+                    </div>
 
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+                }
+
+                <partial name="_LoginPartial" />
+
             </div>
         </nav>
     </header>

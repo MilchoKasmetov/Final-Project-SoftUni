@@ -1,4 +1,6 @@
-﻿namespace Pizzeria.Web.Controllers
+﻿using Pizzeria.Web.Controllers;
+
+namespace Pizzeria.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
@@ -7,7 +9,7 @@
     using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.IngredientCategories;
 
-    public class IngredientCategoriesController : BaseController
+    public class IngredientCategoriesController : AdministrationController
     {
         private readonly IIngredientCategoriesService ingredientCategoriesService;
 

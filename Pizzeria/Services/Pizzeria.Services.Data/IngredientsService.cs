@@ -43,7 +43,6 @@
         public async Task<ICollection<IngredientViewModel>> GetAllIngredientsAsync()
         {
             return await this.ingredientRepository.All().Select(x => new IngredientViewModel() { Id = x.Id, Name = x.Name, IngredientCategory = new IngredientCategoryViewModel() { Name = x.IngredientCategory.Name } }).OrderBy(x => x.IngredientCategory.Name).ThenBy(x => x.Name).ToListAsync();
-
         }
 
         public async Task<EditIngredientInputModel> GetForUpdateAsync(int id)

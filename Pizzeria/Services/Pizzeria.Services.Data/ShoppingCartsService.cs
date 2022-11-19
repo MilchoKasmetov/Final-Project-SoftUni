@@ -54,15 +54,15 @@
 
         public async Task Delete(int id, string userId)
         {
-            var shoppingCard = await this.shoppingCartActivity.All().FirstOrDefaultAsync(x => x.Id == id && x.ShoppingCart.User.Id == userId);
+            var shoppingCard = await this.shoppingCartRepository.All().FirstOrDefaultAsync(x => x.Id == id && x.User.Id == userId);
 
-            this.shoppingCartActivity.HardDelete(shoppingCard);
+            this.shoppingCartRepository.Delete(shoppingCard);
             await this.shoppingCartRepository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<ShoppingCartViewModel>> GetAll()
+        public async Task<ICollection<ShoppingCartViewModel>> GetAll(string userId)
         {
-            var all = await this.shoppingCartRepository
+            var current = await this.shoppingCartRepository
                 .All()
                 .Include(x => x.ShoppingCartActivities)
                 .ThenInclude(x => x.Pizza)
@@ -74,27 +74,36 @@
                 .ThenInclude(x => x.Pizza.SauceDip)
                 .Include(x => x.ShoppingCartActivities)
                 .ThenInclude(x => x.Pizza.Ingredients)
-                .ToListAsync();
+                .Include(x => x.User)
+                .Where(x => x.User.Id == userId)
+                .FirstOrDefaultAsync();
 
-            if (all.Select(x => x.ShoppingCartActivities.Count).FirstOrDefault() == 0)
+            //if (all.Select(x => x.ShoppingCartActivities.Count).FirstOrDefault() == 0)
+            //{
+            //    throw new NullReferenceException();
+            //}
+
+            if (current != null)
             {
-                throw new NullReferenceException();
+                var model = current.ShoppingCartActivities.Select(x => new ShoppingCartViewModel()
+                {
+                    ShoppingCartActivityId = x.ShoppingCartId,
+                    Name = x.Pizza.Name,
+                    ImageURL = x.Pizza.ImageURL,
+                    Dough = x.Pizza.Dough.Name,
+                    SauceDip = x.Pizza.SauceDip.Name,
+                    Ingredients = string.Join(", ", x.Pizza.Ingredients.Select(p => p.Name).FirstOrDefault()),
+                    Size = x.Pizza.Size.Name,
+                    Price = x.Pizza.Price,
+                    Quantity = x.Quantity,
+                    PizzaId = x.PizzaId,
+                })
+                .ToList();
+                return model;
             }
 
-            var model = all.Select(x => new ShoppingCartViewModel()
-            {
-                ShoppingCartActivityId = x.ShoppingCartActivities.Select(x => x.Id).FirstOrDefault(),
-                Name = x.ShoppingCartActivities.Select(x => x.Pizza.Name).FirstOrDefault().ToString(),
-                ImageURL = x.ShoppingCartActivities.Select(p => p.Pizza.ImageURL).FirstOrDefault().ToString(),
-                Dough = x.ShoppingCartActivities.Select(p => p.Pizza.Dough.Name).FirstOrDefault().ToString(),
-                SauceDip = x.ShoppingCartActivities.Select(p => p.Pizza.SauceDip.Name).FirstOrDefault().ToString(),
-                Ingredients = string.Join(", ", x.ShoppingCartActivities.Select(p => p.Pizza.Ingredients.Select(r => r.Name)).FirstOrDefault()),
-                Size = x.ShoppingCartActivities.Select(p => p.Pizza.Size.Name).FirstOrDefault().ToString(),
-                Price = x.ShoppingCartActivities.Select(p => p.Pizza.Price).FirstOrDefault(),
-                Quantity = x.ShoppingCartActivities.Select(p => p.Quantity).FirstOrDefault(),
-                PizzaId = x.ShoppingCartActivities.Select(p => p.Id).FirstOrDefault(),
-            }).ToList();
-            return model;
+
+            return null;
         }
     }
 }
