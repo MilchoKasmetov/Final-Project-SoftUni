@@ -54,9 +54,9 @@
 
         public async Task Delete(int id, string userId)
         {
-            var shoppingCard = await this.shoppingCartRepository.All().FirstOrDefaultAsync(x => x.Id == id && x.User.Id == userId);
+            var shoppingCard = await this.shoppingCartRepository.All().Include(x => x.ShoppingCartActivities).FirstOrDefaultAsync(x => x.Id == id && x.User.Id == userId);
 
-            this.shoppingCartRepository.Delete(shoppingCard);
+            this.shoppingCartActivity.HardDelete(shoppingCard.ShoppingCartActivities.FirstOrDefault());
             await this.shoppingCartRepository.SaveChangesAsync();
         }
 
@@ -83,8 +83,7 @@
             //    throw new NullReferenceException();
             //}
 
-            if (current != null)
-            {
+         
                 var model = current.ShoppingCartActivities.Select(x => new ShoppingCartViewModel()
                 {
                     ShoppingCartActivityId = x.ShoppingCartId,
@@ -100,10 +99,10 @@
                 })
                 .ToList();
                 return model;
-            }
+           
 
 
-            return null;
+           
         }
     }
 }

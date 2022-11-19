@@ -12,21 +12,9 @@
                 @{
                     decimal total = 0.00M;
                 }
-                @if (Model == null)
+                @if (Model.Any())
                 {
-                    <h1>UR SHOPPING BASKET IS EMPTY</h1>
 
-
-                    <button type="button" class="btn btn-primary">
-
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-
-
-                    </button>
-
-                }
-                else
-                {
                     foreach (var shoppingCart in Model)
                     {
                         total += shoppingCart.TotalPrice;
@@ -104,6 +92,24 @@
                         </div>
 
                     </div>
+                }
+                else
+                {
+
+
+                    <h1>UR SHOPPING BASKET IS EMPTY</h1>
+
+
+                    <button type="button" class="btn btn-primary">
+
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+
+                    </button>
+
+
+
+                  
 
 
 
