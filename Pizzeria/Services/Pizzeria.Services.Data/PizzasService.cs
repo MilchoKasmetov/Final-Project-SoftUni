@@ -113,6 +113,8 @@
                 Name = x.Name,
                 ImageURL = x.ImageURL,
                 Ingredients = string.Join(", ", x.Ingredients.Select(x => x.Name)),
+                Price = x.Price,
+
             }).ToList();
         }
 
@@ -126,6 +128,7 @@
                 Name = x.Name,
                 ImageURL = x.ImageURL,
                 Ingredients = string.Join(", ", x.Ingredients.Select(x => x.Name)),
+                Price = x.Price,
             }).ToList();
         }
 

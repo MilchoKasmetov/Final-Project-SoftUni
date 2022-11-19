@@ -19,6 +19,7 @@
 
                 <h5 class="card-title mt-1">@pizza.Name</h5>
                 <p>@pizza.Ingredients</p>
+                <p>@pizza.Price $</p>
             </div>
 
             <form class="input-group-sm" asp-route-id="@pizza.Id" asp-controller="Pizzas" asp-action="Edit" method="get">
