@@ -41,7 +41,7 @@
                 return this.View();
             }
 
-            await this.sauceDipsService.CreateDoughAsync(input);
+            await this.sauceDipsService.CreateSauceDipAsync(input);
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "SauceDips");
         }

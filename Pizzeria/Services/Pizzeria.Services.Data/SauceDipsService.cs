@@ -22,7 +22,7 @@
             this.sauceDipRepository = sauceDipRepository;
         }
 
-        public async Task CreateDoughAsync(CreateSauceDipInputModel model)
+        public async Task CreateSauceDipAsync(CreateSauceDipInputModel model)
         {
             var sauceDip = new SauceDip()
             {
@@ -31,7 +31,7 @@
 
             var allSauceDip = await this.sauceDipRepository.All().ToListAsync();
 
-            if (!allSauceDip.Any(x => x.Name == model.Name))
+            if (!allSauceDip.Any(x => x.Name == model.Name) && model.Name != null)
             {
                 await this.sauceDipRepository.AddAsync(sauceDip);
                 await this.sauceDipRepository.SaveChangesAsync();

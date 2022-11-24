@@ -17,7 +17,7 @@
 
         Task<ICollection<SauceDipViewModel>> ShowAllDeletedAsync();
 
-        Task CreateDoughAsync(CreateSauceDipInputModel model);
+        Task CreateSauceDipAsync(CreateSauceDipInputModel model);
 
         Task<EditSauceDipInputModel> GetForUpdateAsync(int id);
 
