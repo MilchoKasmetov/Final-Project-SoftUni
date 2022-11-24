@@ -14,6 +14,8 @@
 
     public class DoughsService : IDoughsService
     {
+        //removed tolistasync becouse of tests.
+
         private readonly IDeletableEntityRepository<Dough> doughRepository;
 
         public DoughsService(IDeletableEntityRepository<Dough> doughRepository)
@@ -28,9 +30,9 @@
                 Name = model.Name,
             };
 
-            var allDought = await this.doughRepository.All().ToListAsync();
+            var allDought = this.doughRepository.All();
 
-            if (!allDought.Any(x => x.Name == model.Name))
+            if (!allDought.Any(x => x.Name == model.Name) && model.Name != null)
             {
                 await this.doughRepository.AddAsync(dough);
                 await this.doughRepository.SaveChangesAsync();
