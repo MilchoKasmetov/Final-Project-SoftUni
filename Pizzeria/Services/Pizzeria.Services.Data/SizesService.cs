@@ -24,7 +24,7 @@
             this.sizeRepository = sizeRepository;
         }
 
-        public async Task<ICollection<PizzaSizeInputModel>> GetSizesAsync()
+        public async Task<ICollection<PizzaSizeInputModel>> GetSizeAsync()
         {
             return await this.sizeRepository.AllAsNoTracking().Select(x => new PizzaSizeInputModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
@@ -44,17 +44,14 @@
 
             var allDought = await this.sizeRepository.All().ToListAsync();
 
-            if (!allDought.Any(x => x.Name == model.Name))
+            if (!allDought.Any(x => x.Name == model.Name) && model.Name != null)
             {
                 await this.sizeRepository.AddAsync(size);
                 await this.sizeRepository.SaveChangesAsync();
             }
         }
 
-        public async Task<ICollection<SizeViewModel>> GetAllSizeAsync()
-        {
-            return await this.sizeRepository.All().Select(x => new SizeViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
-        }
+
 
 
 

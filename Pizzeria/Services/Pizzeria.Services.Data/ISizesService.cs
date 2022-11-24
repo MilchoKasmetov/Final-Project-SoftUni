@@ -11,7 +11,7 @@
 
     public interface ISizesService
     {
-        Task<ICollection<PizzaSizeInputModel>> GetSizesAsync();
+        Task<ICollection<PizzaSizeInputModel>> GetSizeAsync();
 
         Task<ICollection<SizeViewModel>> GetAllSizesAsync();
 

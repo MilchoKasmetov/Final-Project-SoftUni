@@ -44,7 +44,7 @@
             model.Doughs = await this.doughsService.GetDoughsAsync();
             model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
             model.Ingredients = ingredientsList.ToArray();
-            model.Sizes = await this.sizesService.GetSizesAsync();
+            model.Sizes = await this.sizesService.GetSizeAsync();
             return this.View(model);
         }
 
@@ -76,7 +76,7 @@
             var model = await this.pizzasService.GetForUpdateAsync(id);
             model.Doughs = await this.doughsService.GetDoughsAsync();
             model.SauceDips = await this.sauceDipsService.GetSauceDipsAsync();
-            model.Sizes = await this.sizesService.GetSizesAsync();
+            model.Sizes = await this.sizesService.GetSizeAsync();
 
             return this.View(model);
         }
