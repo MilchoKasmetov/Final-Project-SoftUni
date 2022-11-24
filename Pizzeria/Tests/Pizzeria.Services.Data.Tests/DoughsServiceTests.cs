@@ -24,7 +24,7 @@
 
 
         [Fact]
-        public async Task CreateAndGetAllDoughAsyncSuccessfully()
+        public async Task CreateAllDoughAsyncSuccessfully()
         {
 
             var doughTestWithName = new CreateDoughInputModel()
@@ -40,7 +40,33 @@
             await this.DoughsServiceMoq.CreateDoughAsync(doughTestWithName);
             await this.DoughsServiceMoq.CreateDoughAsync(doughTestNullName);
 
-            Assert.Equal(1, this.DoughsServiceMoq.GetDoughsAsync().Result.Count);
+            var list = await this.DbContext.Doughs.ToListAsync();
+
+            Assert.Single(list);
+            Assert.Equal(TestName, list.FirstOrDefault(x => x.Name == TestName).Name);
+        }
+
+        [Fact]
+        public async Task GetAllDoughsAsyncSuccessfully()
+        {
+
+            var doughTestWithName = new CreateDoughInputModel()
+            {
+                Name = TestName,
+            };
+            var doughTestDough = new CreateDoughInputModel()
+            {
+                Name = TestNameDough,
+            };
+
+            await this.DoughsServiceMoq.CreateDoughAsync(doughTestWithName);
+            await this.DoughsServiceMoq.CreateDoughAsync(doughTestWithName);
+            await this.DoughsServiceMoq.CreateDoughAsync(doughTestDough);
+
+            var list = await this.DoughsServiceMoq.GetAllDoughsAsync();
+
+            Assert.Equal(2, list.Count);
+
         }
     }
 }
