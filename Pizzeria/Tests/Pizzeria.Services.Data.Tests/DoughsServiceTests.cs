@@ -129,7 +129,7 @@
 
             await this.DbContext.Doughs.AddAsync(doughTestWithName);
             await this.DbContext.SaveChangesAsync();
-            await this.DoughsServiceMoq.UpdateAsync(1, doughTestDough);
+            await this.DoughsServiceMoq.UpdateAsync(TestId, doughTestDough);
 
             Assert.Equal(TestNameDough, doughTestWithName.Name);
         }
@@ -143,7 +143,7 @@
             };
             await this.DbContext.Doughs.AddAsync(doughTestWithName);
             await this.DbContext.SaveChangesAsync();
-            await this.DoughsServiceMoq.Delete(1);
+            await this.DoughsServiceMoq.Delete(TestId);
 
             Assert.Equal(TestName, doughTestWithName.Name);
             Assert.True(doughTestWithName.IsDeleted);

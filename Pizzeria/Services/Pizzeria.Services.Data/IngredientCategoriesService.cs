@@ -47,7 +47,7 @@
 
             var allDought = await this.ingredientCategoryRepository.All().ToListAsync();
 
-            if (!allDought.Any(x => x.Name == model.Name))
+            if (!allDought.Any(x => x.Name == model.Name) && model.Name != null)
             {
                 await this.ingredientCategoryRepository.AddAsync(category);
                 await this.ingredientCategoryRepository.SaveChangesAsync();
