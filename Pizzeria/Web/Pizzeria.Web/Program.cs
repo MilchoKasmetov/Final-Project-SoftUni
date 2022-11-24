@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Pizzeria.Data;
 namespace Pizzeria.Web
 {
     using System;
@@ -9,14 +6,15 @@ namespace Pizzeria.Web
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Pizzeria.Data;
-
+    using Pizzeria.Data;
     using Pizzeria.Data.Common;
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;

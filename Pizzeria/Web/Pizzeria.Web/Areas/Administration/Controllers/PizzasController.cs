@@ -1,6 +1,4 @@
-﻿using Pizzeria.Web.Controllers;
-
-namespace Pizzeria.Web.Areas.Administration.Controllers
+﻿namespace Pizzeria.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Security.Claims;
@@ -11,6 +9,7 @@ namespace Pizzeria.Web.Areas.Administration.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Data.Models;
     using Pizzeria.Services.Data;
+    using Pizzeria.Web.Controllers;
     using Pizzeria.Web.ViewModels.Pizzas;
 
     public class PizzasController : AdministrationController

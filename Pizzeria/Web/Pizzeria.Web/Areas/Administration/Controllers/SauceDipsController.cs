@@ -1,11 +1,11 @@
-﻿using Pizzeria.Web.Controllers;
-
-namespace Pizzeria.Web.Areas.Administration.Controllers
+﻿namespace Pizzeria.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Services.Data;
+    using Pizzeria.Web.Controllers;
     using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.SauceDips;
 

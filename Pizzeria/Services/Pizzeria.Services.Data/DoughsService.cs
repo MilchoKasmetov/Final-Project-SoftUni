@@ -30,7 +30,7 @@
                 Name = model.Name,
             };
 
-            var allDought = this.doughRepository.All();
+            var allDought = await this.doughRepository.All().ToListAsync();
 
             if (!allDought.Any(x => x.Name == model.Name) && model.Name != null)
             {
