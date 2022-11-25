@@ -24,7 +24,6 @@
             return this.View(model);
         }
 
-
         public IActionResult Create()
         {
             var model = new CreateSauceDipInputModel();
@@ -45,7 +44,6 @@
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "SauceDips");
         }
-
 
         public async Task<IActionResult> Edit(int id)
         {

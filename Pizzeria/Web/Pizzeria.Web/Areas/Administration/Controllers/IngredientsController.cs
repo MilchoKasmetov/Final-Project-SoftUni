@@ -28,7 +28,6 @@
             return this.View(model);
         }
 
-
         public async Task<IActionResult> Create()
         {
             var model = new CreateIngredientInputModel();
@@ -51,7 +50,6 @@
             return this.RedirectToAction("All", "Ingredients");
         }
 
-
         public async Task<IActionResult> Edit(int id)
         {
             var model = await this.ingredientsService.GetForUpdateAsync(id);
@@ -73,7 +71,6 @@
             // da prenasochvam kam vsichki pizzi koito nai veroqtno shte sa na glavnata stranica
             return this.RedirectToAction("All", "Ingredients");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

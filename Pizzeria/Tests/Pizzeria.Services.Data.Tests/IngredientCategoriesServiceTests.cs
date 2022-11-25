@@ -1,17 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Pizzeria.Data.Models;
-using Pizzeria.Web.ViewModels.Dough;
-using Pizzeria.Web.ViewModels.IngredientCategories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Pizzeria.Services.Data.Tests
+﻿namespace Pizzeria.Services.Data.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using Pizzeria.Data.Models;
+    using Pizzeria.Web.ViewModels.Dough;
+    using Pizzeria.Web.ViewModels.IngredientCategories;
+    using Xunit;
+
     public class IngredientCategoriesServiceTests : BaseServiceTests
     {
         private const int TestId = 1;
@@ -45,7 +46,6 @@ namespace Pizzeria.Services.Data.Tests
             Assert.Equal(TestName, list.FirstOrDefault(x => x.Name == TestName).Name);
         }
 
-
         [Fact]
         public async Task GetIngredientCategoriesAsyncSuccessfully()
         {
@@ -68,7 +68,6 @@ namespace Pizzeria.Services.Data.Tests
             var list = await this.IngredientCategoriesService.GetIngredientCategoriesAsync();
 
             Assert.Equal(2, list.Count);
-
         }
 
         [Fact]
@@ -86,8 +85,6 @@ namespace Pizzeria.Services.Data.Tests
 
             Assert.Equal(TestName, output.Name);
         }
-
-
 
         [Fact]
         public async Task ShowAllDeletedAsyncSuccessfully()
@@ -113,7 +110,6 @@ namespace Pizzeria.Services.Data.Tests
             Assert.Equal(TestNameForSecoundExample, output.FirstOrDefault(x => x.Name == TestNameForSecoundExample).Name);
             Assert.Equal(2, output.FirstOrDefault(x => x.Id == TestIdForSecoundExample).Id);
         }
-
 
         [Fact]
         public async Task UpdateAsyncSuccessfully()

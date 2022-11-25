@@ -33,7 +33,7 @@
 
             var allIngredients = await this.ingredientRepository.All().ToListAsync();
 
-            if (!allIngredients.Any(x => x.Name == model.Name))
+            if (!allIngredients.Any(x => x.Name == model.Name) && model.Name != null)
             {
                 await this.ingredientRepository.AddAsync(ingredient);
                 await this.ingredientRepository.SaveChangesAsync();

@@ -47,7 +47,6 @@
             return this.RedirectToAction("All", "IngredientCategories");
         }
 
-
         public IActionResult Create()
         {
             var model = new CreateIngredientCategoriesInputModel();

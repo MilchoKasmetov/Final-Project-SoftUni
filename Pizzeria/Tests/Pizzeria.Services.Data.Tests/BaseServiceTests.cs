@@ -48,7 +48,6 @@
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
-            
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IDoughsService, DoughsService>();
             services.AddTransient<ISauceDipsService, SauceDipsService>();
@@ -58,7 +57,6 @@
             services.AddTransient<IShoppingCartsService, ShoppingCartsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IIngredientCategoriesService, IngredientCategoriesService>();
-
 
             var context = new DefaultHttpContext();
             services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor { HttpContext = context });

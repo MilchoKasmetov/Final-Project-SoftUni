@@ -34,7 +34,6 @@
             return await this.sizeRepository.All().Select(x => new SizeViewModel() { Id = x.Id, Name = x.Name }).ToListAsync();
         }
 
-
         public async Task CreateSizeAsync(CreateSizeInputModel model)
         {
             var size = new Size()
@@ -50,10 +49,6 @@
                 await this.sizeRepository.SaveChangesAsync();
             }
         }
-
-
-
-
 
         public async Task<EditSizeInputModel> GetForUpdateAsync(int id)
         {

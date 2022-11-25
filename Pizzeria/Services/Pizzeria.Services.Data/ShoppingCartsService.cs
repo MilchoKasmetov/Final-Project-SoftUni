@@ -83,7 +83,6 @@
             //    throw new NullReferenceException();
             //}
 
-         
                 var model = current.ShoppingCartActivities.Select(x => new ShoppingCartViewModel()
                 {
                     ShoppingCartActivityId = x.ShoppingCartId,
@@ -99,10 +98,6 @@
                 })
                 .ToList();
                 return model;
-           
-
-
-           
         }
     }
 }

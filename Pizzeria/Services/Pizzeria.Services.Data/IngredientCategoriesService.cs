@@ -54,7 +54,6 @@
             }
         }
 
-
         public async Task<EditIngredientCategoriesInputModel> GetForUpdateAsync(int id)
         {
             var category = await this.ingredientCategoryRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);

@@ -25,7 +25,6 @@
 
         private IDoughsService DoughsServiceMoq => this.ServiceProvider.GetRequiredService<IDoughsService>();
 
-
         [Fact]
         public async Task CreateDoughAsyncSuccessfully()
         {
@@ -71,7 +70,6 @@
             var list = await this.DoughsServiceMoq.GetAllDoughsAsync();
 
             Assert.Equal(2, list.Count);
-
         }
 
         [Fact]

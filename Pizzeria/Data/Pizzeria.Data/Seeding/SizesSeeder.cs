@@ -19,7 +19,6 @@
             await dbContext.Sizes.AddAsync(new Size() { Name = "Large ∅ 30cm" });
             await dbContext.Sizes.AddAsync(new Size() { Name = "Jumbo ∅ 38cm" });
 
-
             await dbContext.SaveChangesAsync();
         }
     }
