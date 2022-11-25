@@ -46,8 +46,12 @@
                 }
             }
 
-            await this.pizzaRepository.AddAsync(pizza);
-            await this.pizzaRepository.SaveChangesAsync();
+            if (input.Name != null)
+            {
+                await this.pizzaRepository.AddAsync(pizza);
+                await this.pizzaRepository.SaveChangesAsync();
+            }
+
         }
 
         public async Task Delete(int id)

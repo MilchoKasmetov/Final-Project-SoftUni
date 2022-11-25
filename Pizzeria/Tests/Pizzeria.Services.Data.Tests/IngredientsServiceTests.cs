@@ -234,5 +234,39 @@
             Assert.False(testWithName.IsDeleted);
         }
 
+        [Fact]
+        public async Task GetIngredientsAsync()
+        {
+            var testWithIngredientCategory = new IngredientCategory()
+            {
+                Name = TestName,
+            };
+
+            await this.DbContext.IngredientCategories.AddAsync(testWithIngredientCategory);
+            await this.DbContext.SaveChangesAsync();
+
+            var testWithName = new Ingredient()
+            {
+                Name = TestName,
+                IsDeleted = false,
+                IngredientCategoryId = testWithIngredientCategory.Id,
+            };
+            await this.DbContext.Ingredients.AddAsync(testWithName);
+            var testWithNameSecoundExample = new Ingredient()
+            {
+                Name = TestNameForSecoundExample,
+                IsDeleted = false,
+                IngredientCategoryId = testWithIngredientCategory.Id,
+            };
+
+            await this.DbContext.Ingredients.AddAsync(testWithName);
+            await this.DbContext.Ingredients.AddAsync(testWithNameSecoundExample);
+            await this.DbContext.SaveChangesAsync();
+
+            var list = await this.IngredientsService.GetIngredientsAsync();
+
+            Assert.Equal(2, list.Count);
+        }
+
     }
 }
