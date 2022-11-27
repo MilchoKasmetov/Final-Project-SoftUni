@@ -24,9 +24,12 @@ namespace Pizzeria.Web
     using Pizzeria.Services.Mapping;
     using Pizzeria.Services.Messaging;
     using Pizzeria.Web.ViewModels;
+    using Stripe;
+    using UnravelTravel.Web.Common;
 
     public class Program
     {
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -93,6 +96,9 @@ namespace Pizzeria.Web
                 facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
             });
+
+            // Stripe Setup
+            services.Configure<StripeSettings>(configuration.GetSection("Stripe"));
         }
 
         private static void Configure(WebApplication app)
@@ -106,6 +112,9 @@ namespace Pizzeria.Web
             }
 
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
+            // Configure Stripe ApiKeys - need to hide the secret !
+            StripeConfiguration.ApiKey = "sk_test_51M82gfJhP7ROfUcQgFEskNU616u0P5Lsg72NVIq1sHGe67SZ1oyoaJtSgUYIumKeq7ScF7gBJzAk9TOFfMfaEAcH00nIBqoPen";
 
             if (app.Environment.IsDevelopment())
             {

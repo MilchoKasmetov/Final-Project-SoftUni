@@ -1,5 +1,8 @@
 ﻿namespace Pizzeria.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -10,6 +13,7 @@
     using Pizzeria.Data.Models;
     using Pizzeria.Services.Data;
     using Pizzeria.Web.ViewModels.ShoppingCart;
+    using Stripe;
 
     [Authorize(Roles = GlobalConstants.UserRoleName)]
     public class ShoppingCartsController : BaseController
@@ -46,6 +50,43 @@
             await this.shoppingCartsService.Delete(id, userId);
 
             return this.View(nameof(this.Index));
+        }
+
+        // Stripe
+        public async Task<IActionResult> Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                Source = stripeToken,
+            });
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var allProducts = await this.shoppingCartsService.GetAll(userId);
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = (long)allProducts.Select(x => x.TotalPrice).FirstOrDefault(),
+                Description = $"{userId} bought {allProducts.Count()} ticket on {DateTime.UtcNow}",
+                Currency = "usd",
+                Customer = customer.Id,
+                ReceiptEmail = stripeEmail,
+            });
+
+            if (charge.Status != "succeeded")
+            {
+                //string balanceTransactionId = charge.BalanceTransactionId;
+                return this.View("Error");
+            }
+
+
+
+            //await this.ticketsService.BookAllAsync(userIdentifier, userTickets.ToArray(), GlobalConstants.OnlinePaymentMethod);
+            //this.HttpContext.Session.Remove(WebConstants.ShoppingCartSessionKey);
+
+            return this.View("_OrderConfirmation");
         }
     }
 }
