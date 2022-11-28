@@ -60,6 +60,14 @@
             await this.shoppingCartRepository.SaveChangesAsync();
         }
 
+        public async Task Delete(string userId)
+        {
+            var shoppingCard = await this.shoppingCartRepository.All().Include(x => x.ShoppingCartActivities).FirstOrDefaultAsync(x => x.User.Id == userId);
+
+            this.shoppingCartActivity.HardDelete(shoppingCard.ShoppingCartActivities.FirstOrDefault());
+            await this.shoppingCartRepository.SaveChangesAsync();
+        }
+
         public async Task<ICollection<ShoppingCartViewModel>> GetAll(string userId)
         {
             var current = await this.shoppingCartRepository

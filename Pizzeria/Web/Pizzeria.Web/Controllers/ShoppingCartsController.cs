@@ -65,11 +65,12 @@
             });
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var allProducts = await this.shoppingCartsService.GetAll(userId);
+            var totalPrice = allProducts.Select(x => x.TotalPrice).FirstOrDefault() * 100;
 
             var charge = charges.Create(new ChargeCreateOptions
             {
-                Amount = (long)allProducts.Select(x => x.TotalPrice).FirstOrDefault(),
-                Description = $"{userId} bought {allProducts.Count()} ticket on {DateTime.UtcNow}",
+                Amount = (long)totalPrice,
+                Description = $"{userId} bought {allProducts.Count} ticket on {DateTime.UtcNow}",
                 Currency = "usd",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,
@@ -77,14 +78,11 @@
 
             if (charge.Status != "succeeded")
             {
-                //string balanceTransactionId = charge.BalanceTransactionId;
+                //optional - string balanceTransactionId = charge.BalanceTransactionId;
                 return this.View("Error");
             }
 
-
-
-            //await this.ticketsService.BookAllAsync(userIdentifier, userTickets.ToArray(), GlobalConstants.OnlinePaymentMethod);
-            //this.HttpContext.Session.Remove(WebConstants.ShoppingCartSessionKey);
+            await this.shoppingCartsService.Delete(userId);
 
             return this.View("_OrderConfirmation");
         }
