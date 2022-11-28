@@ -91,21 +91,21 @@
             //    throw new NullReferenceException();
             //}
 
-                var model = current.ShoppingCartActivities.Select(x => new ShoppingCartViewModel()
-                {
-                    ShoppingCartActivityId = x.ShoppingCartId,
-                    Name = x.Pizza.Name,
-                    ImageURL = x.Pizza.ImageURL,
-                    Dough = x.Pizza.Dough.Name,
-                    SauceDip = x.Pizza.SauceDip.Name,
-                    Ingredients = string.Join(", ", x.Pizza.Ingredients.Select(p => p.Name).ToList()),
-                    Size = x.Pizza.Size.Name,
-                    Price = x.Pizza.Price,
-                    Quantity = x.Quantity,
-                    PizzaId = x.PizzaId,
-                })
-                .ToList();
-                return model;
+            var model = current.ShoppingCartActivities.Select(x => new ShoppingCartViewModel()
+            {
+                ShoppingCartActivityId = x.ShoppingCartId,
+                Name = x.Pizza.Name,
+                ImageURL = x.Pizza.ImageURL,
+                Dough = x.Pizza.Dough.Name,
+                SauceDip = x.Pizza.SauceDip.Name,
+                Ingredients = string.Join(", ", x.Pizza.Ingredients.Select(p => p.Name).ToList()),
+                Size = x.Pizza.Size.Name,
+                Price = x.Pizza.Price,
+                Quantity = x.Quantity,
+                PizzaId = x.PizzaId,
+            })
+            .ToList();
+            return model;
         }
     }
 }

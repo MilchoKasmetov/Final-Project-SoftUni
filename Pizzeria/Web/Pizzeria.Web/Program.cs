@@ -89,6 +89,7 @@ namespace Pizzeria.Web
             services.AddTransient<IShoppingCartsService, ShoppingCartsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IIngredientCategoriesService, IngredientCategoriesService>();
+            services.AddTransient<IQuantityService, QuantityService>();
 
             // Facebook authentication
             services.AddAuthentication().AddFacebook(facebookOptions =>
