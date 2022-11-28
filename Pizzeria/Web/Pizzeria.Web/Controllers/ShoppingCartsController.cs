@@ -49,7 +49,7 @@
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             await this.shoppingCartsService.Delete(id, userId);
 
-            return this.View(nameof(this.Index));
+            return this.RedirectToAction("Index", "ShoppingCarts");
         }
 
         // Stripe
