@@ -64,13 +64,14 @@
                 Source = stripeToken,
             });
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userEmail = this.User.FindFirstValue(ClaimTypes.Email);
             var allProducts = await this.shoppingCartsService.GetAll(userId);
             var totalPrice = allProducts.Select(x => x.TotalPrice).FirstOrDefault() * 100;
 
             var charge = charges.Create(new ChargeCreateOptions
             {
                 Amount = (long)totalPrice,
-                Description = $"{userId} bought {allProducts.Count} ticket on {DateTime.UtcNow}",
+                Description = $"{userEmail} bought {allProducts.Count} ticket on {DateTime.UtcNow}",
                 Currency = "usd",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,

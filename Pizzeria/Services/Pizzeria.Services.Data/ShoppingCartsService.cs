@@ -98,7 +98,7 @@
                     ImageURL = x.Pizza.ImageURL,
                     Dough = x.Pizza.Dough.Name,
                     SauceDip = x.Pizza.SauceDip.Name,
-                    Ingredients = string.Join(", ", x.Pizza.Ingredients.Select(p => p.Name).FirstOrDefault()),
+                    Ingredients = string.Join(", ", x.Pizza.Ingredients.Select(p => p.Name).ToList()),
                     Size = x.Pizza.Size.Name,
                     Price = x.Pizza.Price,
                     Quantity = x.Quantity,
