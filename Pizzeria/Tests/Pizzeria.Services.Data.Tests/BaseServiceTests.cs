@@ -57,6 +57,7 @@
             services.AddTransient<IShoppingCartsService, ShoppingCartsService>();
             services.AddTransient<IIngredientsService, IngredientsService>();
             services.AddTransient<IIngredientCategoriesService, IngredientCategoriesService>();
+            services.AddTransient<IQuantityService, QuantityService>();
 
             var context = new DefaultHttpContext();
             services.AddSingleton<IHttpContextAccessor>(new HttpContextAccessor { HttpContext = context });

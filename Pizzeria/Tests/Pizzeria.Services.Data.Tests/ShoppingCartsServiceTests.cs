@@ -14,15 +14,11 @@ namespace Pizzeria.Services.Data.Tests
 {
     public class ShoppingCartsServiceTests : BaseServiceTests
     {
-        private const int TestId = 1;
-        private const int TestIdForSecoundExample = 2;
         private const decimal TestPrice = 69.69M;
 
         private const string TestName = "Test";
-        private const string TestNameForSecoundExample = "Test two";
         private const string TestNameForEmail = "test@abv.bg";
         private const string TestImageURLForPizzaExample = "https://foodhub.scene7.com/is/image/woolworthsltdprod/2004-easy-pepperoni-pizza:Mobile-1300x1150";
-        private const string TestNameNull = null;
         private const string TestGuidUser = "2575bb3b-568c-4d6d-b0cb-555110b8eb52";
 
         private IShoppingCartsService ShoppingCartsService => this.ServiceProvider.GetRequiredService<IShoppingCartsService>();
