@@ -56,8 +56,8 @@
                                 </button>*@
 
                                         <form>
-                                            <div class="btn btn-danger" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-                                            <input type="number" id="number" value="@shoppingCart.Quantity" />
+                                            <div class="btn btn-danger" id="@shoppingCart.ShoppingCartActivityId" onclick="decreaseValue(this.id)" value="Decrease Value" >-</div>
+                                            <input type="number" id="number" value="@shoppingCart.Quantity"/>
                                             <div class="btn btn-success" id="@shoppingCart.ShoppingCartActivityId" onclick="increaseValue(this.id)" value="Increase Value">+</div>
                                         </form>
 
@@ -95,7 +95,7 @@
 
                             <div class="float-end">
                                 <p class="mb-0 me-5 d-flex align-items-center">
-                                    <span class="small text-muted me-2">Order total:</span> <span class="lead fw-normal">$@total</span>
+                                    <span class="small text-muted me-2">Order total:</span> <span id="FinaltotalSumValue" class="lead fw-normal">$@total</span>
                                 </p>
                             </div>
 
@@ -143,39 +143,72 @@
         document.getElementById('number').value = value;
 
         let PizzaIncreaseObj = { ShoppingCartActivityId: clicked_id };
-        SendRequest(PizzaIncreaseObj);
+        SendIncreaseRequest(PizzaIncreaseObj);
 
     }
 
-    function decreaseValue() {
+    function decreaseValue(clicked_id) {
         var value = parseInt(document.getElementById('number').value, 10);
         value = isNaN(value) ? 0 : value;
         value < 1 ? value = 1 : '';
-        value--;
-        document.getElementById('number').value = value;
+
+        if(value > 1){
+            value--;
+            document.getElementById('number').value = value;
+            let PizzaIncreaseObj = { ShoppingCartActivityId: clicked_id };
+            SendDecreaseRequest(PizzaIncreaseObj);
+        }
+
 
     }
 
-    function SendRequest(PizzaIncreaseObj) {
+    function SendIncreaseRequest(PizzaIncreaseObj) {
         var t = $("input[name='__RequestVerificationToken']").val();
         $.ajax({
             type: "POST",
             headers:
             {
                 "RequestVerificationToken": t
-            },            
-            url: 'api/Quantity',
+            },
+            url: 'api/Quantity/Increase',
             data: JSON.stringify(PizzaIncreaseObj),
             contentType: 'application/json',
             dataType: "json",
             success: function (response) {
                 $("#totalSumValue").html("$" + response.totalSum.toFixed(2))
-                
+                $("#FinaltotalSumValue").html("$" + response.finalTotalSum.toFixed(2))
+
                 console.log(response.totalSum);
             },
             error: function () {
                 alert("Error!");
             }
         });
+
     }
+
+    function SendDecreaseRequest(PizzaIncreaseObj) {
+        var t = $("input[name='__RequestVerificationToken']").val();
+        $.ajax({
+            type: "POST",
+            headers:
+            {
+                "RequestVerificationToken": t
+            },
+            url: 'api/Quantity/Decrease',
+            data: JSON.stringify(PizzaIncreaseObj),
+            contentType: 'application/json',
+            dataType: "json",
+            success: function (response) {
+                $("#totalSumValue").html("$" + response.totalSum.toFixed(2))
+                $("#FinaltotalSumValue").html("$" + response.finalTotalSum.toFixed(2))
+                console.log(response.totalSum);
+            },
+            error: function () {
+                alert("Error!");
+            }
+        });
+
+    }
+
 </script>

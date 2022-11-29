@@ -19,14 +19,20 @@
             this.shoppingCartRepository = shoppingCartRepository;
         }
 
-        public Task Decrease(int id, string userId)
+        public async Task Decrease(int id, string userId)
         {
-            throw new NotImplementedException();
+            var shoppingCard = await this.shoppingCartRepository.All().Include(x => x.ShoppingCartActivities).FirstOrDefaultAsync(x => x.Id == id && x.User.Id == userId);
+
+            var activity = shoppingCard.ShoppingCartActivities.FirstOrDefault();
+
+            activity.Quantity -= 1;
+
+            await this.shoppingCartRepository.SaveChangesAsync();
         }
 
-        public async Task Increase(int ShoppingCartActivityId, string userId)
+        public async Task Increase(int id, string userId)
         {
-            var shoppingCard = await this.shoppingCartRepository.All().Include(x => x.ShoppingCartActivities).FirstOrDefaultAsync(x => x.Id == ShoppingCartActivityId && x.User.Id == userId);
+            var shoppingCard = await this.shoppingCartRepository.All().Include(x => x.ShoppingCartActivities).FirstOrDefaultAsync(x => x.Id == id && x.User.Id == userId);
 
             var activity = shoppingCard.ShoppingCartActivities.FirstOrDefault();
 
