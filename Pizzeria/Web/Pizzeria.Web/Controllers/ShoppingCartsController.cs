@@ -71,7 +71,7 @@
             var charge = charges.Create(new ChargeCreateOptions
             {
                 Amount = (long)totalPrice,
-                Description = $"{userEmail} bought {allProducts.Count} ticket on {DateTime.UtcNow}",
+                Description = $"{userEmail} bought {allProducts.Count} pizzas on {DateTime.UtcNow}",
                 Currency = "usd",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,
