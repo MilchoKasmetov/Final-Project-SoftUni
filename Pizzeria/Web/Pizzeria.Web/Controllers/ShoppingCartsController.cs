@@ -65,16 +65,19 @@
             });
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             string userEmail = this.User.FindFirstValue(ClaimTypes.Email);
+            string userAdress = this.User.FindFirstValue("Adress");
             var allProducts = await this.shoppingCartsService.GetAll(userId);
+            var quantity = allProducts.Select(x => x.Quantity).Sum();
             var totalPrice = allProducts.Select(x => x.TotalPrice).FirstOrDefault() * 100;
 
             var charge = charges.Create(new ChargeCreateOptions
             {
                 Amount = (long)totalPrice,
-                Description = $"{userEmail} bought {allProducts.Count} pizzas on {DateTime.UtcNow}",
+                Description = $"{userEmail} bought {allProducts.Count * quantity} of pizzas on {DateTime.UtcNow} - need to be deliver {userAdress}",
                 Currency = "usd",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,
+                
             });
 
             if (charge.Status != "succeeded")

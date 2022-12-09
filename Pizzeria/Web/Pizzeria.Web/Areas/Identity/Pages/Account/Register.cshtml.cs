@@ -8,6 +8,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using System.Security.Claims;
     using System.Text;
     using System.Text.Encodings.Web;
     using System.Threading;
@@ -123,6 +124,14 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
                 var user = this.CreateUser();
 
                 user.Adress = this.Input.Adress;
+
+                var claim = new IdentityUserClaim<string>()
+                {
+                    ClaimType = "Adress",
+                    ClaimValue = user.Adress,
+                };
+
+                user.Claims.Add(claim);
 
                 await this._userStore.SetUserNameAsync(user, this.Input.Email, CancellationToken.None);
                 await this._emailStore.SetEmailAsync(user, this.Input.Email, CancellationToken.None);

@@ -87,6 +87,11 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+
+            public string Adress { get; set; }
         }
         
         public IActionResult OnGet() => this.RedirectToPage("./Login");
@@ -134,7 +139,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
                 {
                     this.Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
                     };
                 }
                 return this.Page();
@@ -155,7 +160,14 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
             if (this.ModelState.IsValid)
             {
                 var user = this.CreateUser();
+                user.Adress = this.Input.Adress;
+                var claim = new IdentityUserClaim<string>()
+                {
+                    ClaimType = "Adress",
+                    ClaimValue = user.Adress,
+                };
 
+                user.Claims.Add(claim);
                 await this._userStore.SetUserNameAsync(user, this.Input.Email, CancellationToken.None);
                 await this._emailStore.SetEmailAsync(user, this.Input.Email, CancellationToken.None);
 
