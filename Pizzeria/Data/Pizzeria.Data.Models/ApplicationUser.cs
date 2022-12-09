@@ -37,5 +37,7 @@ namespace Pizzeria.Data.Models
         public int ShoppingCartId { get; set; }
 
         public ShoppingCart ShoppingCart { get; set; }
+
+        public string Adress { get; set; }
     }
 }
