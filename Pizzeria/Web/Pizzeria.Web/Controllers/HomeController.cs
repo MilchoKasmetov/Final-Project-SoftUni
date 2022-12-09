@@ -13,8 +13,7 @@
             {
                 return this.RedirectToAction("All", "Pizzas");
             }
-            //to remove all pizza when have auth
-            return this.RedirectToAction("All", "Pizzas");
+            return this.RedirectToAction("Index", "Pizzas");
         }
 
         public IActionResult Privacy()

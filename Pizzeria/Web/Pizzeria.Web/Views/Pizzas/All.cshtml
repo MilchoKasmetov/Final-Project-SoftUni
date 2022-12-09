@@ -49,3 +49,55 @@
         </div>
     }
 </div>
+
+
+<section class="home-slider owl-carousel img" style="background-image: url(images/bg_1.jpg);">
+
+
+    @foreach (var pizza in Model.Take(1))
+    {
+        <div class="slider-item">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-6 col-sm-12 ftco-animate">
+                        <span class="subheading">Delicious</span>
+                        <h1 class="mb-4">@pizza.Name</h1>
+                        <p class="mb-4 mb-md-5">@pizza.Ingredients</p>
+                   
+                            <p>
+                                <form asp-route-id="@pizza.Id" asp-controller="ShoppingCarts" asp-action="Buy" method="post">
+                                    <input type="submit" value="Buy" class="btn btn-primary p-3 px-xl-4 py-xl-3" />
+                                </form>
+
+                                <a class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3" asp-area="" asp-controller="Pizzas" asp-action="All">View Menu</a>
+                            </p>
+
+                      
+
+                    </div>
+                    <div class="col-md-6 ftco-animate">
+                        <img src="@pizza.ImageURL" class="img-fluid" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                <div class="col-md-7 col-sm-12 text-center ftco-animate">
+                    <span class="subheading">Welcome</span>
+                    <h1 class="mb-4">We cooked your desired Pizza Recipe</h1>
+                    <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <a class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3" asp-area="" asp-controller="Pizzas" asp-action="All">View Menu</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -27,5 +27,12 @@
 
             return this.View(model);
         }
+
+        public async Task<IActionResult> Index()
+        {
+            var model = await this.pizzasService.ShowAllPizzaAsync();
+
+            return this.View(model);
+        }
     }
 }
