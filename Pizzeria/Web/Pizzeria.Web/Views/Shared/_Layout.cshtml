@@ -43,7 +43,7 @@
                     <ul class="navbar-nav ml-auto">
                         @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
-                            <div class="btn-group">
+                            <li class="btn-group">
                                 <button type="button" class="btn btn-primary">Show All</button>
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="visually-hidden">Toggle Dropdown</span>
@@ -57,10 +57,10 @@
                                     <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Sizes" asp-action="All">All Sizes</a></li>
 
                                 </ul>
-                            </div>
+                            </li>
 
 
-                            <div class="btn-group">
+                            <li class="btn-group">
                                 <button type="button" class="btn btn-primary">Create</button>
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="visually-hidden">Toggle Dropdown</span>
@@ -74,9 +74,9 @@
                                     <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Sizes" asp-action="Create">Create Size</a></li>
 
                                 </ul>
-                            </div>
+                            </li>
 
-                            <div class="btn-group">
+                            <li class="btn-group">
                                 <button type="button" class="btn btn-primary">Restore</button>
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="visually-hidden">Toggle Dropdown</span>
@@ -90,7 +90,7 @@
                                     <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Sizes" asp-action="Restore">Restore Sizes</a></li>
 
                                 </ul>
-                            </div>
+                            </li>
                         }
 
                         @if (this.User.IsInRole(GlobalConstants.UserRoleName))
