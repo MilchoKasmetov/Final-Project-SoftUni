@@ -106,7 +106,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
 
-            public string Adress { get; set; }
+            public string Address { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -123,12 +123,12 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
             {
                 var user = this.CreateUser();
 
-                user.Adress = this.Input.Adress;
+                user.Address = this.Input.Address;
 
                 var claim = new IdentityUserClaim<string>()
                 {
-                    ClaimType = "Adress",
-                    ClaimValue = user.Adress,
+                    ClaimType = "Address",
+                    ClaimValue = user.Address,
                 };
 
                 user.Claims.Add(claim);

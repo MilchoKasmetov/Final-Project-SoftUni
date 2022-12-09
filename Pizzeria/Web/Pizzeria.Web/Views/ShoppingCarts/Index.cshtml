@@ -5,7 +5,6 @@
 @using UnravelTravel.Web.Common
 @inject IOptions<StripeSettings> Stripe
 @model IEnumerable<ShoppingCartViewModel>
-@inject UserManager<ApplicationUser> UserManager
 
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
@@ -60,7 +59,7 @@
 
                                         <form>
                                             <div class="btn btn-danger" id="@shoppingCart.ShoppingCartActivityId" onclick="decreaseValue(this.id)" value="Decrease Value">-</div>
-                                            <input type="number" id="number" value="@shoppingCart.Quantity" />
+                                            <input type="number" id="number" readonly="readonly" value="@shoppingCart.Quantity" />
                                             <div class="btn btn-success" id="@shoppingCart.ShoppingCartActivityId" onclick="increaseValue(this.id)" value="Increase Value">+</div>
                                         </form>
 
@@ -98,7 +97,8 @@
 
                             <div class="myDiv">
 
-                               <span>Adress</span> <h2>@UserManager.GetUserAsync(User).Result.Adress</h2>
+                              
+                                <span>Address</span> <h2>@User.FindFirst("Address")</h2>
 
                             </div>
 

@@ -10,13 +10,13 @@
 
         public const string AdministratorPassword = "AdminskataParola123";
 
-        public const string AdminAdress = "Adresa na admina";
+        public const string AdminAddress = "Adresa na admina";
 
         public const string UserRoleName = "User";
 
         public const string UserEmail = "Guest333@gmail.com";
 
-        public const string UserAdress = "Adresa na userra";
+        public const string UserAddress = "Adresa na userra";
 
         public const string UserPassword = "Guest333@";
 

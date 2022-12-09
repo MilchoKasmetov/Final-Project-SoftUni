@@ -21,7 +21,7 @@
             {
                 UserName = GlobalConstants.AdministratorEmail,
                 Email = GlobalConstants.AdministratorEmail,
-                Adress = GlobalConstants.AdminAdress,
+                Address = GlobalConstants.AdminAddress,
             };
 
             var result = await userManager.CreateAsync(user, GlobalConstants.AdministratorPassword);
