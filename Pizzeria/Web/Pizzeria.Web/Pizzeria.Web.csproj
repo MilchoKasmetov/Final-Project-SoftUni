@@ -9,6 +9,11 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Contact.cshtml" />
+    <Content Remove="Views\Home\Services.cshtml" />
+  </ItemGroup>
 	<ItemGroup>
 		<AdditionalFiles Include="..\..\stylecop.json" />
 	</ItemGroup>
@@ -18,6 +23,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <None Include="Views\Home\Contact.cshtml" />
+	  <None Include="Views\Pizzas\Services.cshtml" />
 	  <None Include="wwwroot\js\site.js" />
 	  <None Include="wwwroot\js\site.min.js" />
 	</ItemGroup>

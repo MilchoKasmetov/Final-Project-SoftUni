@@ -19,7 +19,7 @@
                 <select asp-for="@Model.IngredientCategoryId" class="form-control">
                     @foreach (var ingredient in Model.IngredientCategories)
                     {
-                        <option value="@ingredient.Id">@ingredient.Name</option>
+                        <option value="@ingredient.Id" class="text-dark">@ingredient.Name</option>
                     }
                 </select>
                 <span asp-validation-for="IngredientCategoryId" class="text-danger"></span>
