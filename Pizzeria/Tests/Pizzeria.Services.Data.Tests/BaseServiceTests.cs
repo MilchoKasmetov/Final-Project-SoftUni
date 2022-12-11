@@ -1,26 +1,16 @@
 ﻿namespace Pizzeria.Services.Data.Tests
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
-    using Castle.Core.Smtp;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Pizzeria.Data;
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;
     using Pizzeria.Data.Repositories;
-    using Pizzeria.Services.Mapping;
-    using Pizzeria.Services.Messaging;
 
     public abstract class BaseServiceTests : IDisposable
     {
-
         protected BaseServiceTests()
         {
             var services = this.SetServices();

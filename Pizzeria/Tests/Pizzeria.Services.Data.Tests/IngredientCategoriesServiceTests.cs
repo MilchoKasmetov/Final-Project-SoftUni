@@ -1,15 +1,11 @@
 ﻿namespace Pizzeria.Services.Data.Tests
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Pizzeria.Data.Models;
-    using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.IngredientCategories;
     using Xunit;
 
@@ -73,7 +69,6 @@
         [Fact]
         public async Task GetForUpdateAsyncSuccessfully()
         {
-
             var testWithName = new IngredientCategory()
             {
                 Name = TestName,

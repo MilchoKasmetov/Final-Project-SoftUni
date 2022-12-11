@@ -1,7 +1,6 @@
 ﻿namespace Pizzeria.Data.Common.Repositories
 {
     using System.Linq;
-    using System.Threading.Tasks;
 
     using Pizzeria.Data.Common.Models;
 

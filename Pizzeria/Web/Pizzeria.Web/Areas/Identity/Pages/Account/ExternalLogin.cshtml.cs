@@ -19,7 +19,6 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using Pizzeria.Common;
     using Pizzeria.Data.Models;
 

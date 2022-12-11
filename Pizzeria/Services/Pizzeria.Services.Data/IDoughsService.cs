@@ -1,10 +1,7 @@
 ﻿namespace Pizzeria.Services.Data
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using Pizzeria.Data.Models;
     using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.Pizzas;
 

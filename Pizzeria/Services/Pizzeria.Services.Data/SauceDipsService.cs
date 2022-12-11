@@ -1,15 +1,12 @@
 ﻿namespace Pizzeria.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
     using Pizzeria.Data.Common.Repositories;
     using Pizzeria.Data.Models;
-    using Pizzeria.Web.ViewModels.Dough;
     using Pizzeria.Web.ViewModels.Pizzas;
     using Pizzeria.Web.ViewModels.SauceDips;
 

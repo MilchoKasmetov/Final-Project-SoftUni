@@ -11,9 +11,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Ingredient Name</th>
-            <th scope="col">Category Name</th>
-            <th scope="col">Action</th>
+            <th class="text-white" scope="col">Ingredient Name</th>
+            <th class="text-white" scope="col">Category Name</th>
+            <th class="text-white" scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -21,8 +21,8 @@
         {
             <tr>
 
-                <td>@ingredient.Name</td>
-                <td>@ingredient.IngredientCategory.Name</td>
+                <td class="text-white">@ingredient.Name</td>
+                <td class="text-white">@ingredient.IngredientCategory.Name</td>
                 <td>
                     <form class="input-group-sm" asp-route-id="@ingredient.Id" asp-controller="Ingredients" asp-action="Edit" method="get">
                         <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />

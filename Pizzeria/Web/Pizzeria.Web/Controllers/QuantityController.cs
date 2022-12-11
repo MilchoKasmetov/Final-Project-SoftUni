@@ -24,7 +24,6 @@
             IRepository<ShoppingCartActivity> shoppingCardRepo
             )
         {
-
             this.quantityService = quantityService;
             this.shoppingCardRepo = shoppingCardRepo;
         }

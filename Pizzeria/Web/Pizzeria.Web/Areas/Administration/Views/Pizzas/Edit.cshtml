@@ -21,7 +21,7 @@
                 <select asp-for="@Model.DoughId" class="form-control">
                     @foreach (var dough in Model.Doughs)
                     {
-                        <option value="@dough.Id">@dough.Name</option>
+                        <option value="@dough.Id" class="text-dark">@dough.Name</option>
                     }
                 </select>
                 <span asp-validation-for="DoughId" class="text-danger"></span>
@@ -31,7 +31,7 @@
                 <select asp-for="@Model.SauceDipId" class="form-control">
                     @foreach (var sauceDipId in Model.SauceDips)
                     {
-                        <option value="@sauceDipId.Id">@sauceDipId.Name</option>
+                        <option value="@sauceDipId.Id" class="text-dark">@sauceDipId.Name</option>
                     }
                 </select>
                 <span asp-validation-for="SauceDipId" class="text-danger"></span>
@@ -67,7 +67,7 @@
                 <select asp-for="@Model.SizeId" class="form-control">
                     @foreach (var sizeId in Model.Sizes)
                     {
-                        <option value="@sizeId.Id">@sizeId.Name</option>
+                        <option value="@sizeId.Id" class="text-dark">@sizeId.Name</option>
                     }
                 </select>
                 <span asp-validation-for="SauceDipId" class="text-danger"></span>

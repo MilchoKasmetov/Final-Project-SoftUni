@@ -11,8 +11,8 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Dough Name</th>
-            <th scope="col">Action</th>
+            <th class="text-white" scope ="col">Dough Name</th>
+            <th class="text-white" scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
         {
             <tr>
 
-                <td>@dough.Name</td>
+                <td class="text-white">@dough.Name</td>
                 <td>
                     <form class="input-group-sm" asp-route-id="@dough.Id" asp-controller="Doughs" asp-action="Edit" method="get">
                         <input type="submit" value="Update" class="fs-6 btn btn-success mb-3 p-2" />

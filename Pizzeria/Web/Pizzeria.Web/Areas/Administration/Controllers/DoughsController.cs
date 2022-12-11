@@ -5,9 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Services.Data;
-    using Pizzeria.Web.Controllers;
     using Pizzeria.Web.ViewModels.Dough;
-    using Pizzeria.Web.ViewModels.Pizzas;
 
     public class DoughsController : AdministrationController
     {

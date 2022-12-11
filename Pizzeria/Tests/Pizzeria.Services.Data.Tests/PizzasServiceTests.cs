@@ -1,16 +1,12 @@
 ﻿namespace Pizzeria.Services.Data.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Pizzeria.Data.Models;
-    using Pizzeria.Web.ViewModels.IngredientCategories;
-    using Pizzeria.Web.ViewModels.Ingredients;
     using Pizzeria.Web.ViewModels.Pizzas;
     using Xunit;
 
@@ -118,7 +114,6 @@
         [Fact]
         public async Task GetForUpdateAsyncSuccessfully()
         {
-
             var dough = await this.CreateTestDoughAsync();
             var sauce = await this.CreateTestSauceDipAsync();
             var size = await this.CreateTestSizeAsync();
@@ -186,7 +181,6 @@
         [Fact]
         public async Task UpdateAsyncSuccessfully()
         {
-
             var dough = await this.CreateTestDoughAsync();
             var sauce = await this.CreateTestSauceDipAsync();
             var size = await this.CreateTestSizeAsync();

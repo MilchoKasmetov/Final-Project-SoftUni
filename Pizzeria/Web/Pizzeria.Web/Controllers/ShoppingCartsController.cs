@@ -1,18 +1,14 @@
 ﻿namespace Pizzeria.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Common;
-    using Pizzeria.Data.Models;
     using Pizzeria.Services.Data;
-    using Pizzeria.Web.ViewModels.ShoppingCart;
     using Stripe;
 
     [Authorize(Roles = GlobalConstants.UserRoleName)]

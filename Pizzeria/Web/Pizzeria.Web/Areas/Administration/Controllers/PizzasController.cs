@@ -9,7 +9,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Data.Models;
     using Pizzeria.Services.Data;
-    using Pizzeria.Web.Controllers;
     using Pizzeria.Web.ViewModels.Pizzas;
 
     public class PizzasController : AdministrationController

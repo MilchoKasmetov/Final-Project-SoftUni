@@ -1,7 +1,5 @@
 ﻿namespace Pizzeria.Web.ViewModels.Pizzas
 {
-    using System.ComponentModel.DataAnnotations;
-
     public class PizzaIngredientInputModel
     {
         public int Id { get; set; }
