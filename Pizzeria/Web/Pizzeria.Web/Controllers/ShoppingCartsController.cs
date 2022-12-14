@@ -73,7 +73,7 @@
                 Currency = "usd",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,
-                
+
             });
 
             if (charge.Status != "succeeded")

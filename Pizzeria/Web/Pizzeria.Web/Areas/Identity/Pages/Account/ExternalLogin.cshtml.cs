@@ -92,7 +92,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
 
             public string Address { get; set; }
         }
-        
+
         public IActionResult OnGet() => this.RedirectToPage("./Login");
 
         public IActionResult OnPost(string provider, string returnUrl = null)

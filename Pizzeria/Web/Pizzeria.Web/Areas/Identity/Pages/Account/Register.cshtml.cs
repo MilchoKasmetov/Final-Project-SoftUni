@@ -15,7 +15,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
 
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
-  
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
@@ -164,6 +164,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
                         return this.LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
                     this.ModelState.AddModelError(string.Empty, error.Description);
@@ -172,7 +173,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return this.Page();
-        }
+         }
 
         private ApplicationUser CreateUser()
         {
@@ -194,6 +195,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
+
             return (IUserEmailStore<ApplicationUser>)this._userStore;
         }
     }
