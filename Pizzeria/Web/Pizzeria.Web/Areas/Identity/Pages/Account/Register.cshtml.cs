@@ -15,13 +15,14 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
 
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
+  
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
     using Pizzeria.Common;
     using Pizzeria.Data.Models;
+    using Pizzeria.Services.Messaging;
 
     public class RegisterModel : PageModel
     {
@@ -150,7 +151,7 @@ namespace Pizzeria.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: this.Request.Scheme);
 
-                    await this._emailSender.SendEmailAsync(this.Input.Email, "Confirm your email",
+                    await this._emailSender.SendEmailAsync("m.kasmetov@gmail.com", "m.kasmetov@gmail.com",this.Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (this._userManager.Options.SignIn.RequireConfirmedAccount)
