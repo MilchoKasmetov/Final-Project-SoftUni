@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
@@ -29,6 +31,7 @@
     <link rel="stylesheet" href="~/css/flaticon.css">
     <link rel="stylesheet" href="~/css/icomoon.css">
     <link rel="stylesheet" href="~/css/style.css">
+
 </head>
 <body>
     <header>
@@ -91,6 +94,9 @@
 
                                 </ul>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Chat">Pizza Chat</a>
+                            </li>
                         }
 
                         @if (this.User.IsInRole(GlobalConstants.UserRoleName))
@@ -101,6 +107,10 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="ShoppingCarts" asp-action="Index">Shopping Cart</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Chat">Pizza Chat</a>
                             </li>
 
                         }
@@ -191,6 +201,7 @@
     <script src="~/js/google-map.js"></script>
     <script src="~/js/main.js"></script>
 
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>

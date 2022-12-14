@@ -1,7 +1,7 @@
 ﻿namespace Pizzeria.Web.Controllers
 {
     using System.Diagnostics;
-
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pizzeria.Web.ViewModels;
 
@@ -22,6 +22,12 @@
         }
 
         public IActionResult Contact()
+        {
+            return this.View();
+        }
+
+        [Authorize]
+        public IActionResult Chat()
         {
             return this.View();
         }

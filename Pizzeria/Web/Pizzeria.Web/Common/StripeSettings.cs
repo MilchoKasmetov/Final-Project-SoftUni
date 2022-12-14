@@ -1,4 +1,4 @@
-﻿namespace UnravelTravel.Web.Common
+﻿namespace Pizzeria.Web.Common
 {
     public class StripeSettings
     {

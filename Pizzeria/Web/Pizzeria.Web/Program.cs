@@ -21,7 +21,8 @@ namespace Pizzeria.Web
     using Pizzeria.Services.Messaging;
     using Pizzeria.Web.ViewModels;
     using Stripe;
-    using UnravelTravel.Web.Common;
+    using Pizzeria.Web.Hubs;
+    using Pizzeria.Web.Common;
 
     public class Program
     {
@@ -41,7 +42,7 @@ namespace Pizzeria.Web
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            //cookie security- need to double check up
+            // cookie security- need to double check up
             services.AddSession(options =>
             {
                 options.Cookie.HttpOnly = true;
@@ -63,6 +64,7 @@ namespace Pizzeria.Web
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }).AddRazorRuntimeCompilation();
+            services.AddSignalR();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -74,7 +76,7 @@ namespace Pizzeria.Web
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, SendGridEmailSender>( prod => new SendGridEmailSender("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"));
+            services.AddTransient<IEmailSender, SendGridEmailSender>(prod => new SendGridEmailSender(configuration["SendGridKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IDoughsService, DoughsService>();
             services.AddTransient<ISauceDipsService, SauceDipsService>();
@@ -132,9 +134,11 @@ namespace Pizzeria.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.MapHub<ChatHub>("/chat");
             app.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+           
         }
     }
 }
