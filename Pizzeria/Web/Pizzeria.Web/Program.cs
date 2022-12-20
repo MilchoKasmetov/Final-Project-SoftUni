@@ -76,7 +76,7 @@ namespace Pizzeria.Web
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, SendGridEmailSender>(prod => new SendGridEmailSender(configuration["SendGridKey"]));
+            services.AddTransient<IEmailSender, SendGridEmailSender>(prod => new SendGridEmailSender(configuration["SendGridKey:SecretKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IDoughsService, DoughsService>();
             services.AddTransient<ISauceDipsService, SauceDipsService>();
