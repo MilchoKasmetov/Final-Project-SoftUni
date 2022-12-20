@@ -21,6 +21,13 @@
                 Address = GlobalConstants.UserAddress,
             };
 
+            var claim = new IdentityUserClaim<string>()
+            {
+                ClaimType = "Address",
+                ClaimValue = GlobalConstants.UserAddress,
+            };
+
+            user.Claims.Add(claim);
             var result = await userManager.CreateAsync(user, GlobalConstants.UserPassword);
 
             if (result.Succeeded)
